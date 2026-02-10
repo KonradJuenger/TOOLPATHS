@@ -62,8 +62,6 @@ TOOLPATHS is currently in closed beta. We are beta testing with a small team of 
 
 ###### 0.2.10-beta10
 
-    
-
 - output for robots (for use with e.g. robots plugin by visose)
 - operations are removed and replaced by toolpath inheritance
 - toolpath can accept other toolpaths as templates. In this way settings can be used in multiple toolpaths and  adjusted in bulk 
