@@ -60,6 +60,12 @@ TOOLPATHS is currently in closed beta. We are beta testing with a small team of 
 
 #### Changelog
 
+###### 0.2.11-beta11
+
+- handles flow = 0 and generates endcaps dynamically at extrusions ends
+- more aggressive smoothing, suggested value for mesh smoothing is 0 - 2
+
+
 ###### 0.2.10-beta10
 
 - output for robots (for use with e.g. robots plugin by visose)
