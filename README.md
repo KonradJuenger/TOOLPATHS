@@ -60,6 +60,11 @@ TOOLPATHS is currently in closed beta. We are beta testing with a small team of 
 
 #### Changelog
 
+###### 0.2.12-beta12 ( unreleased )
+
+- async solver for FMD processor and FDM simulator
+
+
 ###### 0.2.11-beta11
 
 - handles flow = 0 and generates endcaps dynamically at extrusions ends
