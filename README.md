@@ -60,6 +60,9 @@ TOOLPATHS is currently in closed beta. We are beta testing with a small team of 
 
 #### Changelog
 
+###### 0.2.13-beta13
+- package layout for Rhino 7 
+
 ###### 0.2.12-beta12
 
 - async solver for FMD processor and FDM simulator
