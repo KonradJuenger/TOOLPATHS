@@ -60,10 +60,13 @@ TOOLPATHS is currently in closed beta. We are beta testing with a small team of 
 
 #### Changelog
 
-###### 0.2.12-beta12 ( unreleased )
+###### 0.2.12-beta12
 
 - async solver for FMD processor and FDM simulator
-
+- rhino 7 support
+- added gyroid and gyroid connected infill
+- BREAKING CHANGES:
+  - infill generator: "Line width" renamed to "Infill spacing"
 
 ###### 0.2.11-beta11
 
