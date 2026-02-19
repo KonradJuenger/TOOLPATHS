@@ -59,6 +59,13 @@ TOOLPATHS is currently in closed beta. We are beta testing with a small team of 
 | <img src="Images/Rhino_e2WsY8M4wt.avif" alt="" style="max-width:100%;height:auto;"> | combine Modulators with **Masks** to restrict the effect to specific regions or along a gradient                              |
 
 #### Changelog
+###### 0.2.15-beta15
+
+- rewrite for vase mode: 4 modes to control pitch and point spacing by angle or distance. removes the 400,001 vertex limit.
+- Non-planar slicing: mesh is transformed to planar, sliced, and inverse-transformed to original geometry.
+- Upgraded to .NET 8.0: requires Rhino 8.20+ for improved performance.
+- Fixed bug causing incorrect infill line heights.
+
 
 ###### 0.2.13-beta13
 - package layout for Rhino 7 
