@@ -59,6 +59,14 @@ TOOLPATHS is currently in closed beta. We are beta testing with a small team of 
 | <img src="Images/Rhino_e2WsY8M4wt.avif" alt="" style="max-width:100%;height:auto;"> | combine Modulators with **Masks** to restrict the effect to specific regions or along a gradient                              |
 
 #### Changelog
+
+###### 0.2.16-beta16 (unreleased)
+- multi extruder support
+- preview does not collide with mutliple open files
+- less verbose messages on different compontents and on startup
+- bug fixes for simulation time
+
+
 ###### 0.2.15-beta15
 
 - rewrite for vase mode: 4 modes to control pitch and point spacing by angle or distance. removes the 400,001 vertex limit.
