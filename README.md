@@ -62,7 +62,7 @@ TOOLPATHS is currently in closed beta. We are beta testing with a small team of 
 
 ###### 0.2.16-beta16 (unreleased)
 - multi extruder support
-- preview does not collide with mutliple open files
+- when multiple files are open, only the preview of the current file is displayed
 - less verbose messages on different compontents and on startup
 - bug fixes for simulation time
 
