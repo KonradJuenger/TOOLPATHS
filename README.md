@@ -43,7 +43,7 @@ For more details, please refer to the [Licensing Documentation](Docs/CORE/licens
 
 ## Quickstart
 
-![Vo9zaG3C3o](./images/Vo9zaG3C3o-2.png)
+![Vo9zaG3C3o](Images/Vo9zaG3C3o-2.png)
 
 - **FDM Toolpath:** The central component which defines the toolpath for the printer. Right-Click to reveal properties that can be defined on a per-object level.
 - **FDM EXTRUDER:** set extruder number, nozzle diameter, filament diameter and preview color
@@ -69,14 +69,14 @@ For more details, please refer to the [Licensing Documentation](Docs/CORE/licens
 
 TOOLPATHS has 4 extrusion modes which are different ways to define the amount of extruded material per mm linear movement. 
 
-![LYrHOhfWVO](./images/LYrHOhfWVO-2.png)
+![LYrHOhfWVO](Images/LYrHOhfWVO-2.png)
 
 1. **Volume Mode:** This is the most direct way to control the extrusion. It defines the volume extruded per mm of linear movement. e.g 3 mm³/ 1 mm  meaning 3 cubic millimeter extruded per one mm traveled. As layer height is actually the distance from the nozzle to the next layer it is not explicitly defined in this mode -- the FDM Simulator then used the volume and actual distance to the layer below to create a accurate preview.
-2. **Static Mode:** Sometimes the simulation of the extruded material is too heavy on large models and slows down the workflow. Static Mode disregards the distance to the next layer and  uses explicitly defined width and height values. This allows for extrusions that occupy the same space when in reality the extrusion would actually squish.![XsDMSWZAtk-2](./images/XsDMSWZAtk-2-4.png)
+2. **Static Mode:** Sometimes the simulation of the extruded material is too heavy on large models and slows down the workflow. Static Mode disregards the distance to the next layer and  uses explicitly defined width and height values. This allows for extrusions that occupy the same space when in reality the extrusion would actually squish.![XsDMSWZAtk-2](Images/XsDMSWZAtk-2-4.png)
 3. **Auto Width Mode:** Automatic extrusion amount based on the height below the nozzle. You just define a target width and TOOLPATHS does the rest. It is best used deliberatly in e.g. non-planar printing with where the layer height ist constantly changing. See Extrusion Calculation below for more details.
 4. **Auto Ratio Mode:** Similarly to Auto Width Mode, it defines a target ratio between width and height and adjusts the extusion amount arcordingly.
 
-![lcAq2X4jid](./images/lcAq2X4jid-2.png)
+![lcAq2X4jid](Images/lcAq2X4jid-2.png)
 
 **Flow:**  Flow acts like a multiplier on top of the chosen extrusion mode. In combination with e.g. Auto Width mode TOOLPATHS will calculate first the extrusion amount needed for the target width and then mutiply it with the supplied flow value. Flow can be modulated with the Flow Modulator.
 
@@ -84,11 +84,11 @@ TOOLPATHS has 4 extrusion modes which are different ways to define the amount of
 
 TOOLPATHS simulates all extrusions in a global heightfield. The heightfield, extrusion calculation and preview mesh are tightly related.
 
-![fAgLSqPQ64](./images/fAgLSqPQ64-2.png)  
+![fAgLSqPQ64](Images/fAgLSqPQ64-2.png)  
 
  Settings for the heightfield are exposed in FDM Defaults:
 
-![0N4zjvTrfB](./images/0N4zjvTrfB-2.png)
+![0N4zjvTrfB](Images/0N4zjvTrfB-2.png)
 
 - Heightfield Resolution: HFRes defines the resultion of the heigthfield. Details smaller then the this can not be caputured
 - Meshsing Resolution: during simulation the toolpath is resampled based on this distance and at every point the heightfield is sampled. In Auto Width Mode the extrusion amount is calculated at every sample point
