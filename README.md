@@ -46,7 +46,7 @@ For more details, please refer to the [Licensing Documentation](Docs/CORE/licens
 ![Vo9zaG3C3o](Images/Vo9zaG3C3o-2.png)
 
 - **FDM Toolpath:** The central component which defines the toolpath for the printer. Right-Click to reveal properties that can be defined on a per-object level.
-- **FDM EXTRUDER:** set extruder number, nozzle diameter, filament diameter and preview color
+- **FDM Extruder:** set extruder number, nozzle diameter, filament diameter and preview color
 - **FDM Machine:** bundles all setting for the individual printer. 
 - **FDM Defaults:** enables global default values for all toolpaths that are not set on a per-object level.  Right-Click to reveal properties 
 - **FDM Processor:** combines all toolpaths and settings into one program that is past to simulation or gcode output
