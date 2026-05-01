@@ -60,7 +60,6 @@ For more details, please refer to the [Licensing Documentation](Docs/CORE/licens
 | --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
 | ![](Images/Rhino_c4XbruyvUU.avif) | right click components to reveal parameters.                                                                                  |
 | ![](Images/Rhino_1zHBruW1qc.avif) | Toolpaths objects are geometry. you can transform them with the standart grasshopper components. (move, array, transform ...) |
-| ![](Images/Rhino_6G4t7lFxec.avif) | use **Toolpaths Generators** to create vasemode prints or infill                                                              |
 | ![](Images/Rhino_IU8lO9lQS6.avif) | use **Toolpaths Modulators** to varie different parameters per segment like speed, flow, displacement                         |
 | ![](Images/Rhino_e2WsY8M4wt.avif) | combine Modulators with **Masks** to restrict the effect to specific regions or along a gradient                              |
 
@@ -115,6 +114,28 @@ Extrusion with a layerheight smaller than this are considered degenerate.
 ##### Layerheight Maximum:
 
 Extrusion with a layerheight larger than this are capped at this layerheight.
+
+## Modulators
+
+Modulators change a Toolpath after it has been created. They are used to vary parameters along a path or  reshape the path geometry. A modulator takes a Toolpath as input and outputs a new Toolpath with the modulation applied. Most modulators work per segment or per vertex. For example, the Flow Modulator writes a flow multiplier for every segment, while displacement modulators move the vertices of the Toolpath. 
+
+Typical uses include:
+
+- varying extrusion flow along a path
+- changing print speed per segment
+- changing extruder temperature along a path
+- displacing a path with vectors, normals, or an interpolated vector field
+
+Numeric modulators such as Flow, Speed, and Extruder Temperature use a shared mapping system. A single value can be applied to the whole Toolpath, or a list of values can be mapped onto the path using a Vertex Mapping Strategy.
+
+Vertex Mapping Strategies:
+
+- **Constant**: use the first value everywhere
+- **OneToOne**: one value for every vertex
+- **Wrap**: repeat the value list along the path
+- **RepeatLast**: use the final value after the list runs out
+- **Normalized-Stepped**: distribute values along the normalized length of the path in steps
+- **Normalized-Interpolated**: interpolate smoothly between values along the normalized length of the path
 
 ## Beta Testing
 
