@@ -4,22 +4,16 @@
 
 Toolpaths is a Grasshopper plugin for generating and simulating G-code. It's goal is to enable new ways of 3D printing and CNC milling while giving novices and experts alike full control of the machines movement.
 
-### Toolpaths core features
+## Toolpaths core features
 
-- **Object-Oriented Toolpaths**
-  The core data type is the Toolpath, which encapsulates a curve with its associated metadata (speed, extrusion, etc.) into a single object.
-  
-  *Granularity*: Assign parameters per-path or per-segment.
-  
-  *Compatibility*: A Toolpath object remains a standard Grasshopper geometry type, allowing you to use native components for transformations without losing metadata.
-
-- **Inheritance & Settings**
-  
-  Settings follow a simple priority: **Global Defaults** (lowest) → **Linked Template** → **Local Override** (highest). You can use any existing toolpath as a template for a new one, inheriting all properties automatically and overriding only what is necessary.
-
-- **Simulation**
-  
-  The FDM engine simulates material deposition rather than just visualizing a mesh pipe. By calculating volume buildup the solver enables features like automatic flow adjustment.
+- **Object-Oriented Toolpaths**  
+The core data type is the Toolpath, which encapsulates a curve with its associated metadata (speed, extrusion, etc.) into a single object.  
+*Granularity*: Assign parameters per-path or per-segment.  
+*Compatibility*: A Toolpath object remains a standard Grasshopper geometry type, allowing you to use native components for transformations without losing metadata.
+- **Inheritance & Settings**  
+Settings follow a simple priority: **Global Defaults** (lowest) → **Linked Template** → **Local Override** (highest). You can use any existing toolpath as a template for a new one, inheriting all properties automatically and overriding only what is necessary.
+- **Simulation**  
+The FDM engine simulates material deposition rather than just visualizing a mesh pipe. By calculating volume buildup the solver enables features like automatic flow adjustment.
 
 #### Features FDM
 
@@ -40,32 +34,100 @@ Toolpaths is a Grasshopper plugin for generating and simulating G-code. It's goa
 - High-performance stock removal simulation
 - LinuxCNC-flavor G-code compiler
 
-#### Installation
+### Installation + Licensing
 
-For installation and licensing instructions, please refer to the [Licensing Documentation](Docs/CORE/licensing.md).
+- run `_PackageManager`  > check include Pre-Releases > search for TOOLPATHS > install
+- choose trail or cloud key > paste your key  > activate it
 
-#### Beta Testing
+For more details, please refer to the [Licensing Documentation](Docs/CORE/licensing.md).
 
-TOOLPATHS is currently in closed beta. We are beta testing with a small team of dedicated designers and fabricators. If you want to contribute, ask for a key at toolpaths@juengerkuehn.com.
+## Quickstart
+
+![Vo9zaG3C3o](./images/Vo9zaG3C3o-2.png)
+
+- **FDM Toolpath:** The central component which defines the toolpath for the printer. Right-Click to reveal properties that can be defined on a per-object level.
+- **FDM EXTRUDER:** set extruder number, nozzle diameter, filament diameter and preview color
+- **FDM Machine:** bundles all setting for the individual printer. 
+- **FDM Defaults:** enables global default values for all toolpaths that are not set on a per-object level.  Right-Click to reveal properties 
+- **FDM Processor:** combines all toolpaths and settings into one program that is past to simulation or gcode output
+- **FDM Simulator:** creates a mesh preview
+- **FDM G-Code Output:** compiles the final G-Code and uploads it to the printer
 
 #### overview ui
 
-|                                                                                     |                                                                                                                               |
-| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| <img src="Images/Rhino_c4XbruyvUU.avif" alt="" style="max-width:100%;height:auto;"> | right click components to reveal parameters.                                                                                  |
-| <img src="Images/Rhino_1zHBruW1qc.avif" alt="" style="max-width:100%;height:auto;"> | Toolpaths objects are geometry. you can transform them with the standart grasshopper components. (move, array, transform ...) |
-| <img src="Images/Rhino_6G4t7lFxec.avif" alt="" style="max-width:100%;height:auto;"> | use **Toolpaths Generators** to create vasemode prints or infill                                                              |
-| <img src="Images/Rhino_IU8lO9lQS6.avif" alt="" style="max-width:100%;height:auto;"> | use **Toolpaths Modulators** to varie different parameters per segment like speed, flow, displacement                         |
-| <img src="Images/Rhino_e2WsY8M4wt.avif" alt="" style="max-width:100%;height:auto;"> | combine Modulators with **Masks** to restrict the effect to specific regions or along a gradient                              |
+
+|                                   |                                                                                                                               |
+| --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| ![](Images/Rhino_c4XbruyvUU.avif) | right click components to reveal parameters.                                                                                  |
+| ![](Images/Rhino_1zHBruW1qc.avif) | Toolpaths objects are geometry. you can transform them with the standart grasshopper components. (move, array, transform ...) |
+| ![](Images/Rhino_6G4t7lFxec.avif) | use **Toolpaths Generators** to create vasemode prints or infill                                                              |
+| ![](Images/Rhino_IU8lO9lQS6.avif) | use **Toolpaths Modulators** to varie different parameters per segment like speed, flow, displacement                         |
+| ![](Images/Rhino_e2WsY8M4wt.avif) | combine Modulators with **Masks** to restrict the effect to specific regions or along a gradient                              |
+
+
+## Extrusion Modes
+
+TOOLPATHS has 4 extrusion modes which are different ways to define the amount of extruded material per mm linear movement. 
+
+![LYrHOhfWVO](./images/LYrHOhfWVO-2.png)
+
+1. **Volume Mode:** This is the most direct way to control the extrusion. It defines the volume extruded per mm of linear movement. e.g 3 mm³/ 1 mm  meaning 3 cubic millimeter extruded per one mm traveled. As layer height is actually the distance from the nozzle to the next layer it is not explicitly defined in this mode -- the FDM Simulator then used the volume and actual distance to the layer below to create a accurate preview.
+2. **Static Mode:** Sometimes the simulation of the extruded material is too heavy on large models and slows down the workflow. Static Mode disregards the distance to the next layer and  uses explicitly defined width and height values. This allows for extrusions that occupy the same space when in reality the extrusion would actually squish.![XsDMSWZAtk-2](./images/XsDMSWZAtk-2-4.png)
+3. **Auto Width Mode:** Automatic extrusion amount based on the height below the nozzle. You just define a target width and TOOLPATHS does the rest. It is best used deliberatly in e.g. non-planar printing with where the layer height ist constantly changing. See Extrusion Calculation below for more details.
+4. **Auto Ratio Mode:** Similarly to Auto Width Mode, it defines a target ratio between width and height and adjusts the extusion amount arcordingly.
+
+![lcAq2X4jid](./images/lcAq2X4jid-2.png)
+
+**Flow:**  Flow acts like a multiplier on top of the chosen extrusion mode. In combination with e.g. Auto Width mode TOOLPATHS will calculate first the extrusion amount needed for the target width and then mutiply it with the supplied flow value. Flow can be modulated with the Flow Modulator.
+
+### Extrusion Calculation
+
+TOOLPATHS simulates all extrusions in a global heightfield. The heightfield, extrusion calculation and preview mesh are tightly related.
+
+![fAgLSqPQ64](./images/fAgLSqPQ64-2.png)  
+
+ Settings for the heightfield are exposed in FDM Defaults:
+
+![0N4zjvTrfB](./images/0N4zjvTrfB-2.png)
+
+- Heightfield Resolution: HFRes defines the resultion of the heigthfield. Details smaller then the this can not be caputured
+- Meshsing Resolution: during simulation the toolpath is resampled based on this distance and at every point the heightfield is sampled. In Auto Width Mode the extrusion amount is calculated at every sample point
+- Smoothing Window: The preview mesh is slightly smoothed by default, as extrusion can not change instantly. Affects preview only.
+
+#### Auto Extrusion and Degenerate Extrusion Detection
+
+Auto Width Mode is convenient, but it can produce unintended results.
+
+Example: the extrusion width is set to Auto Width 2 mm and the toolpath bridges over a gap. The algorithm evaluates the available height, which might be large (for example 10 cm if the bridge occurs higher in the print). Based on this, it attempts to deposit enough material so the extrusion approaches the target 2 mm width. This can lead to excessive material being extruded. Degenerate Extrusion Detection and layer-height limits are used to handle these cases by capping the amount of material that can be extruded.
+
+#### Degenerate Behavior
+
+A degenerate extrusion is an extrusion that has zero height, zero width, or zero area. This can happen as toolpath is to close to exsiting printed geometry.  Degenerate modes handle zero-thickness points by either calculating replacement values from neighboring samples to maintain continuity  (0) or flagging them as suppressed to omit them from the simulation (1).
+
+##### Degenerate Aspect Ratio:
+
+Extrusions with a width / height aspect ratio larger than this are considered degenerate.
+
+##### Layerheight Minimum:
+
+Extrusion with a layerheight smaller than this are considered degenerate.
+
+##### Layerheight Maximum:
+
+Extrusion with a layerheight larger than this are capped at this layerheight.
+
+## Beta Testing
+
+TOOLPATHS is currently in closed beta. We are beta testing with a small team of dedicated designers and fabricators. If you want to contribute, ask for a key at [toolpaths@juengerkuehn.com](mailto:toolpaths@juengerkuehn.com).
 
 #### Changelog
 
-###### 0.2.16-beta16 
+###### 0.2.16-beta16
+
 - multi extruder support
 - when multiple files are open, only the preview of the current file is displayed
 - less verbose messages on different compontents and on startup
 - bug fixes for simulation time
-
 
 ###### 0.2.15-beta15
 
@@ -74,9 +136,9 @@ TOOLPATHS is currently in closed beta. We are beta testing with a small team of 
 - Upgraded to .NET 8.0: requires Rhino 8.20+ for improved performance.
 - Fixed bug causing incorrect infill line heights.
 
-
 ###### 0.2.13-beta13
-- package layout for Rhino 7 
+
+- package layout for Rhino 7
 
 ###### 0.2.12-beta12
 
@@ -90,7 +152,6 @@ TOOLPATHS is currently in closed beta. We are beta testing with a small team of 
 
 - handles flow = 0 and generates endcaps dynamically at extrusions ends
 - more aggressive smoothing, suggested value for mesh smoothing is 0 - 2
-
 
 ###### 0.2.10-beta10
 
@@ -177,7 +238,7 @@ TOOLPATHS is currently in closed beta. We are beta testing with a small team of 
 ###### 0.1.9-alpha10
 
 - better icons
-- significant perf improvements in fdm preview 
+- significant perf improvements in fdm preview
 
 ###### 0.1.8-alpha9
 
@@ -197,12 +258,12 @@ TOOLPATHS is currently in closed beta. We are beta testing with a small team of 
 - refactor of vasemode layerheight 
 - introduction of layerheight generator: creates a layerheights based on slope 
 - better default values
-- licensing popup when license is expired 
+- licensing popup when license is expired
 
 ###### 0.1.5-alpha6
 
 - option to disable licensing , plugin will not try to load automatically until licensing is enabled
-- naming conflict resolved between Rhino host plugin and Grasshopper 
+- naming conflict resolved between Rhino host plugin and Grasshopper
 
 ###### 0.1.4-alpha5
 
