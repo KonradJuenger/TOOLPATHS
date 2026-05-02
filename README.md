@@ -117,7 +117,7 @@ Extrusion with a layerheight larger than this are capped at this layerheight.
 
 ## Modulators
 
-![alt text](Images/wNPmRyUg24.png)  
+![wNPmRyUg24](Images/wNPmRyUg24.png)  
 Modulators change a Toolpath after it has been created. They are used to vary parameters along a path or  reshape the path geometry. A modulator takes a Toolpath as input and outputs a new Toolpath with the modulation applied. Most modulators work per segment or per vertex. For example, the Flow Modulator writes a flow multiplier for every segment, while displacement modulators move the vertices of the Toolpath. 
 
 Typical uses include:
