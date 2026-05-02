@@ -72,7 +72,7 @@ TOOLPATHS has 4 extrusion modes which are different ways to define the amount of
 
 1. **Volume Mode:** This is the most direct way to control the extrusion. It defines the volume extruded per mm of linear movement. e.g., 3 mm³/1 mm  meaning 3 cubic millimeter extruded per one mm traveled. As layer height is actually the distance from the nozzle to the next layer it is not explicitly defined in this mode -- the FDM Simulator then used the volume and actual distance to the layer below to create a accurate preview.
 2. **Static Mode:** Sometimes the simulation of the extruded material is too heavy on large models and slows down the workflow. Static Mode disregards the distance to the next layer and  uses explicitly defined width and height values. This allows for extrusions that occupy the same space when in reality the extrusion would actually squish.![XsDMSWZAtk-2](Images/XsDMSWZAtk-2-4.png)
-3. **Auto Width Mode:** Automatic extrusion amount based on the height below the nozzle. You just define a target width and TOOLPATHS does the rest. It is best used deliberatly in e.g. non-planar printing with where the layer height is constantly changing. See Extrusion Calculation below for more details.
+3. **Auto Width Mode:** Automatically calculates the extrusion amount based on the height below the nozzle. Specify a target width, and the system computes the required extrusion volume to achieve it. This mode is particularly useful for non-planar printing applications where the layer height varies continuously. See Extrusion Calculation below for more details.
 4. **Auto Ratio Mode:** Similarly to Auto Width Mode, it defines a target ratio between width and height and adjusts the extusion amount arcordingly.
 
 ![lcAq2X4jid](Images/lcAq2X4jid-2.png)
