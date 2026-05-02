@@ -75,8 +75,8 @@ TOOLPATHS has 4 extrusion modes which are different ways to define the amount of
 3. **Auto Width Mode:** Automatically calculates the extrusion amount based on the height below the nozzle. Specify a target width, and the system computes the required extrusion volume to achieve it. This mode is particularly useful for non-planar printing applications where the layer height varies continuously. See Extrusion Calculation below for more details.
 4. **Auto Ratio Mode:** Similarly to Auto Width Mode, it defines a target ratio between width and height and adjusts the extusion amount arcordingly.
 
-![lcAq2X4jid](Images/lcAq2X4jid-2.png)
-
+![D9PhvC79w7](Images/D9PhvC79w7.png)
+5. **No Extrusion Mode:** The printer will follow this path but will not extrude any material. 
 **Flow:**  Flow acts like a multiplier on top of the chosen extrusion mode. In combination with e.g. Auto Width mode TOOLPATHS will calculate first the extrusion amount needed for the target width and then multiply it with the supplied flow value. Flow can be modulated with the Flow Modulator.
 
 ### Extrusion Calculation
