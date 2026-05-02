@@ -101,7 +101,7 @@ Example: the extrusion width is set to Auto Width 2 mm and the toolpath bridges 
 
 #### Degenerate Behavior
 
-A degenerate extrusion is an extrusion that has zero height, zero width, or zero area. This can happen as toolpath is too close to existing printed geometry.  Degenerate modes handle zero-thickness points by either calculating replacement values from neighboring samples to maintain continuity  (0) or flagging them as suppressed to omit them from the simulation (1).
+A degenerate extrusion is an extrusion that has zero height or zero width. This can happen as toolpath is too close to existing printed geometry.  Degenerate modes handle zero-thickness points by either calculating replacement values from neighboring samples to maintain continuity  (0) or flagging them as suppressed to omit them from the simulation (1).
 
 ##### Degenerate Aspect Ratio:
 
@@ -117,6 +117,7 @@ Extrusion with a layerheight larger than this are capped at this layerheight.
 
 ## Modulators
 
+![alt text](Images/wNPmRyUg24.png)  
 Modulators change a Toolpath after it has been created. They are used to vary parameters along a path or  reshape the path geometry. A modulator takes a Toolpath as input and outputs a new Toolpath with the modulation applied. Most modulators work per segment or per vertex. For example, the Flow Modulator writes a flow multiplier for every segment, while displacement modulators move the vertices of the Toolpath. 
 
 Typical uses include:
@@ -128,7 +129,9 @@ Typical uses include:
 
 Numeric modulators such as Flow, Speed, and Extruder Temperature use a shared mapping system. A single value can be applied to the whole Toolpath, or a list of values can be mapped onto the path using a Vertex Mapping Strategy.
 
-Vertex Mapping Strategies:
+![veoBqzWTWN](Images/veoBqzWTWN-2.png)
+
+**Vertex Mapping Strategies:**
 
 - **Constant**: use the first value everywhere
 - **OneToOne**: one value for every vertex
@@ -138,6 +141,8 @@ Vertex Mapping Strategies:
 - **Normalized-Interpolated**: interpolate smoothly between values along the normalized length of the path
 
 ## Masks
+
+![MJQBQnKHZt](Images/MJQBQnKHZt-3.png)
 
 Masks control the strength of a modulator along a Toolpath. They are lists of numeric values, usually mapped per segment or per vertex.
 
