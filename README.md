@@ -137,6 +137,20 @@ Vertex Mapping Strategies:
 - **Normalized-Stepped**: distribute values along the normalized length of the path in steps
 - **Normalized-Interpolated**: interpolate smoothly between values along the normalized length of the path
 
+## Masks
+
+Masks control the strength of a modulator along a Toolpath. They are lists of numeric values, usually mapped per segment or per vertex.
+
+Common values:
+
+- 0 = no effect
+- 1 = full effect
+- 0..1 = blended effect
+
+Some modulators clamp masks to 0..1. Others use the mask as a direct multiplier, so values above 1 can amplify the effect and negative values can invert it. For predictable results, use 0..1 unless overdriving is intentional.
+
+Masks do not modify Toolpaths by themselves. They are connected to modulators to restrict, fade, or scale effects, for example by region or along a gradient.
+
 ## Beta Testing
 
 TOOLPATHS is currently in closed beta. We are beta testing with a small team of dedicated designers and fabricators. If you want to contribute, ask for a key at [toolpaths@juengerkuehn.com](mailto:toolpaths@juengerkuehn.com).
