@@ -53,17 +53,6 @@ For more details, please refer to the [Licensing Documentation](Docs/CORE/licens
 - **FDM Simulator:** creates a mesh preview
 - **FDM G-Code Output:** compiles the final G-Code and uploads it to the printer
 
-#### Overview UI
-
-
-|                                   |                                                                                                                               |
-| --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| ![](Images/Rhino_c4XbruyvUU.avif) | right click components to reveal parameters.                                                                                  |
-| ![](Images/Rhino_1zHBruW1qc.avif) | Toolpaths objects are geometry. you can transform them with the standart grasshopper components. (move, array, transform ...) |
-| ![](Images/Rhino_IU8lO9lQS6.avif) | use **Toolpaths Modulators** to varie different parameters per segment like speed, flow, displacement                         |
-| ![](Images/Rhino_e2WsY8M4wt.avif) | combine Modulators with **Masks** to restrict the effect to specific regions or along a gradient                              |
-
-
 ## Extrusion Modes
 
 TOOLPATHS has 4 extrusion modes which are different ways to define the amount of extruded material per mm linear movement. 
@@ -154,6 +143,36 @@ Common values:
 Some modulators clamp masks to 0..1. Others use the mask as a direct multiplier, so values above 1 can amplify the effect and negative values can invert it. For predictable results, use 0..1 unless overdriving is intentional.
 
 Masks do not modify Toolpaths by themselves. They are connected to modulators to restrict, fade, or scale effects, for example by region or along a gradient.
+
+## Generators
+
+Toolpaths is built to give designers fine-grained control at the level of individual extrusions. It does not focus on automatic slicing or fully automated toolpath generation. Instead, users define and design the curves themselves.
+
+To support this workflow, Toolpaths includes a small set of curve-generation components called **Generators**. Generators output **polylines**, not Toolpath objects.
+
+## 2D Generators
+
+### Infill Generator
+
+### ![ZWCFJTWDUm](Images/ZWCFJTWDUm-2.png)
+
+The Infill Generator fills a planar polygon with different patterns like Gyroid or Monotonic infill. By default the input region is offset inwards by half infill spacing to avoid overlapping between walls and infill. Adjust the offset by adding an input to Infill Offset.
+
+### Walls Generator
+
+![jRQN4kCcjt](Images/jRQN4kCcjt-2.png)
+
+The Walls Generator creates multiple inward offsets of the input polygon. The first offset is positioned at 0.5 × line width from the polygon boundary, ensuring the extrusion fills up to the edge without overlap.
+
+Walls Generator can also be used for outward offsets or with explicit values. Right click the component for options.
+
+### Walls + Infill
+
+![fAsok5v7r6](Images/fAsok5v7r6-2.png)
+
+The Walls and Infill Generators can be used in combination to fill a polygon: Connect the Infill Curves output from the Walls Generator to the Infill Generator.
+
+## 3D Generators
 
 ## Beta Testing
 
