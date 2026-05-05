@@ -37,7 +37,7 @@ The FDM engine simulates material deposition rather than just visualizing a mesh
 ### Installation + Licensing
 
 - run `_PackageManager`  > check include Pre-Releases > search for TOOLPATHS > install
-- choose trail or cloud key > paste your key  > activate it
+- choose trial or cloud key > paste your key  > activate it
 
 For more details, please refer to the [Licensing Documentation](Docs/CORE/licensing.md).
 
@@ -45,13 +45,25 @@ For more details, please refer to the [Licensing Documentation](Docs/CORE/licens
 
 ![Vo9zaG3C3o](Images/Vo9zaG3C3o-2.png)
 
-- **FDM Toolpath:** The central component which defines the toolpath for the printer. Right-Click to reveal properties that can be defined on a per-object level.
-- **FDM Extruder:** set extruder number, nozzle diameter, filament diameter and preview color
-- **FDM Machine:** bundles all setting for the individual printer. 
+- **FDM Toolpath:** The central component which defines the toolpath for the printer. Right-click to reveal properties that can be defined on a per-object level.
+- **FDM Extruder:** Set extruder number, nozzle diameter, filament diameter and preview color.
+- **FDM Machine:** bundles all settings for the individual printer. 
 - **FDM Defaults:** enables global default values for all toolpaths that are not set on a per-object level.  Right-Click to reveal properties 
 - **FDM Processor:** combines all toolpaths and settings into one program that is past to simulation or gcode output
 - **FDM Simulator:** creates a mesh preview
 - **FDM G-Code Output:** compiles the final G-Code and uploads it to the printer
+
+
+#### Overview UI
+
+
+|                                   |                                                                                                                               |
+| --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| ![](Images/Rhino_c4XbruyvUU.avif) | right click components to reveal parameters.                                                                                  |
+| ![](Images/Rhino_1zHBruW1qc.avif) | Toolpaths objects are geometry. you can transform them with the standart grasshopper components. (move, array, transform ...) |
+| ![](Images/Rhino_IU8lO9lQS6.avif) | use **Toolpaths Modulators** to varie different parameters per segment like speed, flow, displacement                         |
+| ![](Images/Rhino_e2WsY8M4wt.avif) | combine Modulators with **Masks** to restrict the effect to specific regions or along a gradient                              |
+
 
 ## Extrusion Modes
 
@@ -59,10 +71,10 @@ TOOLPATHS has 4 extrusion modes which are different ways to define the amount of
 
 ![LYrHOhfWVO](Images/LYrHOhfWVO-2.png)
 
-1. **Volume Mode:** This is the most direct way to control the extrusion. It defines the volume extruded per mm of linear movement. e.g., 3 mm³/1 mm  meaning 3 cubic millimeter extruded per one mm traveled. As layer height is actually the distance from the nozzle to the next layer it is not explicitly defined in this mode -- the FDM Simulator then used the volume and actual distance to the layer below to create a accurate preview.
-2. **Static Mode:** Sometimes the simulation of the extruded material is too heavy on large models and slows down the workflow. Static Mode disregards the distance to the next layer and  uses explicitly defined width and height values. This allows for extrusions that occupy the same space in the preview when in reality the extrusion would actually squish.![XsDMSWZAtk-2](Images/XsDMSWZAtk-2-4.png)
+1. **Volume Mode:** This is the most direct way to control the extrusion. It defines the volume extruded per mm of linear movement. e.g., 3 mm³/1 mm meaning 3 cubic millimeter extruded per one mm traveled. As layer height is actually the distance from the nozzle to the next layer it is not explicitly defined in this mode -- the FDM Simulator then uses the volume and actual distance to the layer below to create an accurate preview.
+2. **Static Mode:** Sometimes the simulation of the extruded material is too heavy on large models and slows down the workflow. Static Mode disregards the distance to the next layer and uses explicitly defined width and height values. This allows for extrusions that occupy the same space in the preview when in reality the extrusion would actually squish.![XsDMSWZAtk-2](Images/XsDMSWZAtk-2-4.png)
 3. **Auto Width Mode:** Automatically calculates the extrusion amount based on the height below the nozzle. Specify a target width, and the system computes the required extrusion volume to achieve it. This mode is particularly useful for non-planar printing applications where the layer height varies continuously. See Extrusion Calculation below for more details.
-4. **Auto Ratio Mode:** Similarly to Auto Width Mode, it defines a target ratio between width and height and adjusts the extusion amount arcordingly. ![D9PhvC79w7](Images/D9PhvC79w7.png)
+4. **Auto Ratio Mode:** Similarly to Auto Width Mode, it defines a target ratio between width and height and adjusts the extrusion amount accordingly.
 5. **No Extrusion Mode:** The printer will follow this path but will not extrude any material.
 
 **Flow:**  Flow acts like a multiplier on top of the chosen extrusion mode. In combination with e.g. Auto Width mode TOOLPATHS will calculate first the extrusion amount needed for the target width and then multiply it with the supplied flow value. Flow can be modulated with the Flow Modulator.
@@ -77,8 +89,8 @@ TOOLPATHS simulates all extrusions in a global heightfield. The heightfield, ext
 
 ![0N4zjvTrfB](Images/0N4zjvTrfB-2.png)
 
-- Heightfield Resolution: HFRes defines the resolution of the heightfield. Details smaller than this can not be captured
-- Meshsing Resolution: during simulation the toolpath is resampled based on this distance and at every point the heightfield is sampled. In Auto Width Mode the extrusion amount is calculated at every sample point
+- Heightfield Resolution: HFRes defines the resolution of the heightfield. Details smaller than this cannot be captured.
+- Meshing Resolution: during simulation the toolpath is resampled based on this distance and at every point the heightfield is sampled. In Auto Width Mode the extrusion amount is calculated at every sample point.
 - Smoothing Window: The preview mesh is slightly smoothed by default, as extrusion can not change instantly. Affects preview only.
 
 #### Auto Extrusion and Degenerate Extrusion Detection
@@ -89,7 +101,7 @@ Example: the extrusion width is set to Auto Width 2 mm and the toolpath bridges 
 
 #### Degenerate Behavior
 
-A degenerate extrusion is an extrusion that has zero height or zero width. This can happen as toolpath is too close to existing printed geometry.  Degenerate modes handle zero-thickness points by either calculating replacement values from neighboring samples to maintain continuity  (0) or flagging them as suppressed to omit them from the simulation (1).
+A degenerate extrusion is an extrusion that has zero height or zero width. This can happen when a toolpath is too close to existing printed geometry. Degenerate modes handle zero-thickness points by either calculating replacement values from neighboring samples to maintain continuity (0) or flagging them as suppressed to omit them from the simulation (1).
 
 ##### Degenerate Aspect Ratio:
 
@@ -174,6 +186,20 @@ The Walls and Infill Generators can be used in combination to fill a polygon: Co
 
 ## 3D Generators
 
+## Planar Slice Generator
+
+The Planar Slice Generator slices the input geometry into horizontal layers. Intersections are calculated at each layer’s midpoint, but the output polylines are placed at the layer ceiling. This matches the actual extrusion behavior: the nozzle deposits material downward, so the middle of the printed layer aligns with the intersection plane.
+
+Brep-Plane intersection curves are resampled and output as polylines. Convert the input to mesh for faster slicing.
+
+## Vase Mode Generator
+
+The Vase Mode Generator creates a helical path on the surface of the input geometry. The output curve is also resampled either by length (sampling mode = 1, default) or angle (sampling mode = 0). Length-based sampling produces consistent distances between sampling points. Angle-based sampling results in vertically aligned control points.
+
+Angle based sampling can be staggered so that the pattern alternates and  repeats every N layers. 
+
+Stagger can be combined with the Normal Displacement Modifier to create seamless surface patterns. 
+
 ## Beta Testing
 
 TOOLPATHS is currently in closed beta. We are beta testing with a small team of dedicated designers and fabricators. If you want to contribute, ask for a key at [toolpaths@juengerkuehn.com](mailto:toolpaths@juengerkuehn.com).
@@ -184,7 +210,7 @@ TOOLPATHS is currently in closed beta. We are beta testing with a small team of 
 
 - multi extruder support
 - when multiple files are open, only the preview of the current file is displayed
-- less verbose messages on different compontents and on startup
+- less verbose messages on different components and on startup
 - bug fixes for simulation time
 
 ###### 0.2.15-beta15
@@ -217,9 +243,9 @@ TOOLPATHS is currently in closed beta. We are beta testing with a small team of 
 - operations are removed and replaced by toolpath inheritance
 - toolpath can accept other toolpaths as templates. In this way settings can be used in multiple toolpaths and  adjusted in bulk 
 - new curve / toolpath sorting component, sorting is removed in the FDM Processor
-- machine and process settings are seperated: FDM machine + FDM Defaults
+- machine and process settings are separated: FDM machine + FDM Defaults
 - FDM Processor checks the build volume, if provided, and gives visual warnings if exceeded
-- Z clearance setting check inital Z hop to prevent collisions
+- Z clearance setting check initial Z hop to prevent collisions
 
 ###### 0.2.9-beta9
 
@@ -240,11 +266,11 @@ TOOLPATHS is currently in closed beta. We are beta testing with a small team of 
 - image map example 
 - variable infill example
 - better degen defaults
-- issue warnings if extusion is limited by nozzle size
+- issue warnings if extrusion is limited by nozzle size
 - slicing component now accept mesh input (much faster)
 - baked preview mesh is now split to match the sim time
 - improved stability 
-- deconstuct toolpath is now two components: deconstuct CNC and deconstruct FDM
+- deconstruct toolpath is now two components: deconstruct CNC and deconstruct FDM
 - gha loading sequence fix on mac 
 - no extrude curves displayed thicker
 
@@ -279,9 +305,9 @@ TOOLPATHS is currently in closed beta. We are beta testing with a small team of 
 
 - interpolated vector field modulator
 - simulation improvement:
-  - heigthfield outlier filtering
+  - heightfield outlier filtering
   - extrusion smoothing 
-  - dengenerate extrusion filtering
+  - degenerate extrusion filtering
   - heightfield interpolation
 - bugfix: sorting curves off by default
 - icons for parameters
@@ -308,7 +334,7 @@ TOOLPATHS is currently in closed beta. We are beta testing with a small team of 
 ###### 0.1.7-alpha8
 
 - planar slicer component: generates planar curves for "normal" printing
-- bugfix in walls generator: holes are offest correctly
+- bugfix in walls generator: holes are offset correctly
 
 ###### 0.1.6-alpha7
 
