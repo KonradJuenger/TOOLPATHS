@@ -188,17 +188,25 @@ The Walls and Infill Generators can be used in combination to fill a polygon: Co
 
 ## Planar Slice Generator
 
+![R00Dycugdw](Images/R00Dycugdw-2.png)
+
 The Planar Slice Generator slices the input geometry into horizontal layers. Intersections are calculated at each layer’s midpoint, but the output polylines are placed at the layer ceiling. This matches the actual extrusion behavior: the nozzle deposits material downward, so the middle of the printed layer aligns with the intersection plane.
 
 Brep-Plane intersection curves are resampled and output as polylines. Convert the input to mesh for faster slicing.
 
 ## Vase Mode Generator
 
+![MXRsVY8iek](Images/MXRsVY8iek-2.png)
+
 The Vase Mode Generator creates a helical path on the surface of the input geometry. The output curve is also resampled either by length (sampling mode = 1, default) or angle (sampling mode = 0). Length-based sampling produces consistent distances between sampling points. Angle-based sampling results in vertically aligned control points.
 
 Angle based sampling can be staggered so that the pattern alternates and  repeats every N layers. 
 
+![Rhino_JKhFmoPmOff](Images/Rhino_JKhFmoPmOff-2.png)
+
 Stagger can be combined with the Normal Displacement Modifier to create seamless surface patterns. 
+
+![stagger](Images/stagger-2.png)
 
 ## Beta Testing
 
