@@ -221,7 +221,13 @@ Vase Mode Generator and Planar Slice Generator can produce varieing layer height
 
 A profile curve, together with minimum and maximum layer height values, can be used to vary layer height based on slope. By default, the mapping is absolute: horizontal areas map to `MinH`, and vertical areas map to `MaxH`.
 
-Enable Normalize Input from the Layer Height Generator’s context menu to remap the actual slope or curvature range of the input geometry to the full `[MinH..MaxH]` range. This makes the layer height variation relative to the geometry itself, rather than to an absolute horizontal-to-vertical range.
+Enable Normalize Input by right-clicking the Layer Height Generator to remap the actual slope or curvature range of the input geometry to the full `[MinH..MaxH]` range. This makes the layer height variation relative to the geometry itself, rather than to an absolute horizontal-to-vertical range.
+
+## Non-Planar Slicing
+
+![8LpMRwAu2u](Images/8LpMRwAu2u-2.png)
+
+Non-planar slicing uses a two-step transform. First, the input mesh is transformed into a planar version with flat top and bottom boundaries. This allows standard slicing methods, such as Vase Mode or Planar Slicer, to generate regular toolpaths. After slicing, the inverse transform is applied to the toolpaths, bending them back into the original shape of the input mesh.
 
 ## Beta Testing
 
