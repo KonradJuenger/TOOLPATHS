@@ -53,7 +53,6 @@ For more details, please refer to the [Licensing Documentation](Docs/CORE/licens
 - **FDM Simulator:** creates a mesh preview
 - **FDM G-Code Output:** compiles the final G-Code and uploads it to the printer
 
-
 #### Overview UI
 
 
@@ -200,13 +199,29 @@ Brep-Plane intersection curves are resampled and output as polylines. Convert th
 
 The Vase Mode Generator creates a helical path on the surface of the input geometry. The output curve is also resampled either by length (sampling mode = 1, default) or angle (sampling mode = 0). Length-based sampling produces consistent distances between sampling points. Angle-based sampling results in vertically aligned control points.
 
-Angle based sampling can be staggered so that the pattern alternates and  repeats every N layers. 
-
 ![Rhino_JKhFmoPmOff](Images/Rhino_JKhFmoPmOff-2.png)
 
-Stagger can be combined with the Normal Displacement Modifier to create seamless surface patterns. 
+Angle based sampling can be staggered so that the pattern alternates and  repeats every N layers. Stagger can be combined with e.g. the Normal Displacement Modifier to create seamless surface patterns. 
 
 ![stagger](Images/stagger-2.png)
+
+Base and top thickness can be used to slice the start end end of the shape planar -- commonly used to create a solid bottom layer.
+
+![QHXXSph7ny](Images/QHXXSph7ny-2.png)
+
+Center axis is usually infered by the bounding box center and  straight in Z direction. For slanted intput geometry it might be useful to explicitly define a tilted axis. 
+
+## Layerheight Field
+
+![psQib6WfL8-2](Images/psQib6WfL8-2-2.png)
+
+Vase Mode Generator and Planar Slice Generator can produce varieing layer heights based on a Layer Height Field. Use the Layer Height Generator to create fields based on interpolation of explicit values or on the slope of an input geometry. The number of output layers is automatically determen to achive the target density. 
+
+![3NdaDaYcJK-2](Images/3NdaDaYcJK-2-2.png)
+
+A profile curve, together with minimum and maximum layer height values, can be used to vary layer height based on slope. By default, the mapping is absolute: horizontal areas map to `MinH`, and vertical areas map to `MaxH`.
+
+Enable Normalize Input from the Layer Height Generator’s context menu to remap the actual slope or curvature range of the input geometry to the full `[MinH..MaxH]` range. This makes the layer height variation relative to the geometry itself, rather than to an absolute horizontal-to-vertical range.
 
 ## Beta Testing
 
