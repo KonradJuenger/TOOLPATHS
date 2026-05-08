@@ -231,7 +231,7 @@ Non-planar slicing uses a two-step transform. First, the input mesh is transform
 
 ### Planar Transform
 
-![oUqwgHQTNG-2](./images/oUqwgHQTNG-2-2.png)
+![oUqwgHQTNG-2](Images/oUqwgHQTNG-2-2.png)
 
 The first step is to transform the geometry so that the layer lines become horizontal in the transformed state. This is commonly used to align layer lines with a non-planar upper edge.
 
@@ -246,7 +246,7 @@ With these defaults, the transform enlarges the input geometry in the transforme
 
 ### Slicing and Inverse Transform
 
-![2rD0UPyive](./images/2rD0UPyive-2.png)
+![2rD0UPyive](Images/2rD0UPyive-2.png)
 
 The transformed mesh can then be sliced with planar methods. The resulting toolpaths are transformed back using the inverse of the initial transform, so they conform to the original input geometry.
 
