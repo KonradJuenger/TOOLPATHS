@@ -227,7 +227,28 @@ Enable Normalize Input by right-clicking the Layer Height Generator to remap the
 
 ![8LpMRwAu2u](Images/8LpMRwAu2u-2.png)
 
-Non-planar slicing uses a two-step transform. First, the input mesh is transformed into a planar version with flat top and bottom boundaries. This allows standard slicing methods, such as Vase Mode or Planar Slicer, to generate regular toolpaths. After slicing, the inverse transform is applied to the toolpaths, bending them back into the original shape of the input mesh.
+Non-planar slicing uses a two-step transform. First, the input mesh is transformed into a planar version with flat top and bottom boundaries. This allows standard slicing methods, such as Vase Mode or Planar Slicer, to generate regular toolpaths. After slicing, the inverse transform is applied to the toolpaths, bending them back into the original shape of the input mesh.  
+
+### Planar Transform
+
+![oUqwgHQTNG-2](./images/oUqwgHQTNG-2-2.png)
+
+The first step is to transform the geometry so that the layer lines become horizontal in the transformed state. This is commonly used to align layer lines with a non-planar upper edge.
+
+The **Planar Transform** component takes a mesh and a set of base and target surfaces, then deforms the mesh accordingly. Base and target surfaces can be supplied explicitly. If they are left empty, the component infers them from the input mesh:
+
+	**Base Surface 1:** a fitted surface through the upper naked edge of the mesh  
+	**Base Surface 2:** a horizontal planar surface at the bounding box minimum  
+	**Target Surface 1:** a horizontal planar surface at the bounding box maximum  
+	**Target Surface 2:** a horizontal planar surface at the bounding box minimum
+
+With these defaults, the transform enlarges the input geometry in the transformed state. After slicing, the inverse transform compresses the generated toolpaths back onto the original shape. As a result, the layer height used in the transformed state becomes the maximum layer height after the inverse transform.
+
+### Slicing and Inverse Transform
+
+![2rD0UPyive](./images/2rD0UPyive-2.png)
+
+The transformed mesh can then be sliced with planar methods. The resulting toolpaths are transformed back using the inverse of the initial transform, so they conform to the original input geometry.
 
 ## Beta Testing
 
