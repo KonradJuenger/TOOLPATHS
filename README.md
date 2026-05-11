@@ -57,7 +57,7 @@ For more details, please refer to the [Licensing Documentation](Docs/CORE/licens
 
 The central Component of the plugin is the toolpath component. It combines the printing path and settings that should be applied to it. 
 
-![image](./images/pasted_20260511-100257.png)
+![image](Images/pasted_20260511-100257.png)
 
 Right click the component icon to reveal all parameters that can be set for this toolpath.   
 
@@ -65,7 +65,7 @@ The main input will be a curve, prefeably a polyline. Curves other than polyline
 
 ## Toolpath Inheritance
 
-![image](./images/pasted_20260511-101654.png)
+![image](Images/pasted_20260511-101654.png)
 
 Toolpath components can be chained, allowing one Toolpath component to use the output of another as its input. This makes it possible to group toolpaths and override selected settings while preserving others.
 
