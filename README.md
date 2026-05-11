@@ -53,16 +53,31 @@ For more details, please refer to the [Licensing Documentation](Docs/CORE/licens
 - **FDM Simulator:** creates a mesh preview
 - **FDM G-Code Output:** compiles the final G-Code and uploads it to the printer
 
-#### Overview UI
+## Toolpath Component
 
+The central Component of the plugin is the toolpath component. It combines the printing path and settings that should be applied to it. 
 
-|                                   |                                                                                                                               |
-| --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| ![](Images/Rhino_c4XbruyvUU.avif) | right click components to reveal parameters.                                                                                  |
-| ![](Images/Rhino_1zHBruW1qc.avif) | Toolpaths objects are geometry. you can transform them with the standart grasshopper components. (move, array, transform ...) |
-| ![](Images/Rhino_IU8lO9lQS6.avif) | use **Toolpaths Modulators** to varie different parameters per segment like speed, flow, displacement                         |
-| ![](Images/Rhino_e2WsY8M4wt.avif) | combine Modulators with **Masks** to restrict the effect to specific regions or along a gradient                              |
+![image](./images/pasted_20260511-100257.png)
 
+Right click the component icon to reveal all parameters that can be set for this toolpath.   
+
+The main input will be a curve, prefeably a polyline. Curves other than polyline will be converted automatically with 0.3mm sampling. Alternatively another toolpath can be also used as an input.
+
+## Toolpath Inheritance
+
+![image](./images/pasted_20260511-101654.png)
+
+Toolpath components can be chained, allowing one Toolpath component to use the output of another as its input. This makes it possible to group toolpaths and override selected settings while preserving others.
+
+In the example above, the individual speeds of the two input toolpaths are kept, while the Z-Hop value is overwritten and set to **3.2** for both.
+
+If a setting is not defined on the Toolpath component, the value from the **FDM Defaults** component is used.
+
+This creates a simple inheritance model: define global values in **FDM Defaults**, override specific values on individual toolpaths, or overwrite values from existing toolpaths by passing them through the Toolpath input.
+
+## Toolpath Geometry
+
+![](Images/Rhino_1zHBruW1qc.avif) Toolpaths objects are geometry. you can transform them with the standart grasshopper components. (move, array, transform ...)  Parameters set at the toolpaths stay intact. 
 
 ## Extrusion Modes
 
@@ -237,10 +252,12 @@ The first step is to transform the geometry so that the layer lines become horiz
 
 The **Planar Transform** component takes a mesh and a set of base and target surfaces, then deforms the mesh accordingly. Base and target surfaces can be supplied explicitly. If they are left empty, the component infers them from the input mesh:
 
-	**Base Surface 1:** a fitted surface through the upper naked edge of the mesh  
-	**Base Surface 2:** a horizontal planar surface at the bounding box minimum  
-	**Target Surface 1:** a horizontal planar surface at the bounding box maximum  
-	**Target Surface 2:** a horizontal planar surface at the bounding box minimum
+```
+**Base Surface 1:** a fitted surface through the upper naked edge of the mesh  
+**Base Surface 2:** a horizontal planar surface at the bounding box minimum  
+**Target Surface 1:** a horizontal planar surface at the bounding box maximum  
+**Target Surface 2:** a horizontal planar surface at the bounding box minimum
+```
 
 With these defaults, the transform enlarges the input geometry in the transformed state. After slicing, the inverse transform compresses the generated toolpaths back onto the original shape. As a result, the layer height used in the transformed state becomes the maximum layer height after the inverse transform.
 
