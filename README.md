@@ -1,12 +1,6 @@
-<details>
-<summary>About TOOLPATHS</summary>
-
 Toolpaths is a Grasshopper plugin for generating and simulating G-code. Its goal is to enable new ways of 3D printing and CNC milling while giving novices and experts alike full control of the machines movement.
 
-</details>
-
-<details>
-<summary>Toolpaths core features</summary>
+## Toolpaths core features
 
 - **Object-Oriented Toolpaths**
 
@@ -22,10 +16,7 @@ Settings follow a simple priority: **FDM Defaults** (lowest) → **inherited Too
 
 The FDM engine simulates material deposition rather than just visualizing a mesh pipe. By calculating volume buildup the solver enables features like automatic flow adjustment.
 
-</details>
-
-<details>
-<summary>Install TOOLPATHS</summary>
+## Install TOOLPATHS
 
 1. Get a trial key here: [ link ]
 2. In Rhino, run `_PackageManager`, enable **Include pre-releases**, search for **TOOLPATHS**, and install it.
@@ -33,10 +24,7 @@ The FDM engine simulates material deposition rather than just visualizing a mesh
 
 See the [licensing guide](deprecated/Docs/CORE/licensing.md) for other license types and details.
 
-</details>
-
-<details>
-<summary>Quickstart</summary>
+# Quickstart
 
 A **Toolpath** combines geometry with the properties used to print it. The **FDM Processor** collects the Toolpaths, applies defaults and machine settings, and creates one program. The **FDM Simulator** displays that program as a mesh, and **FDM G-Code Output** writes the program as G-code.
 
@@ -44,10 +32,7 @@ A **Toolpath** combines geometry with the properties used to print it. The **FDM
 
 [Download the Quickstart Grasshopper definition](docs-v3/examples/quickstart.gh) to explore the complete workflow.
 
-</details>
-
-<details>
-<summary>Vase Mode Example</summary>
+### Vase Mode Example
 
 ![Vase mode print setup](docs-v3/images/vasemode.png)
 
@@ -55,16 +40,11 @@ This example shows a vase-mode print with a solid bottom. The Vase Mode Generato
 
 [Download the Vase Mode Grasshopper definition](docs-v3/examples/vasemode.gh)
 
-</details>
-
-<details>
-<summary>The main components</summary>
+## The main components
 
 You can send multiple Toolpaths to the processor to make one program. Toolpath settings take precedence over defaults: a value set on a Toolpath is used for that Toolpath; otherwise, the processor uses the corresponding value from FDM Defaults.
 
 For more advanced workflows, Toolpaths can also inherit settings from other Toolpaths and be modified along their geometry.
-
-</details>
 
 <details>
 <summary>FDM Toolpath</summary>
