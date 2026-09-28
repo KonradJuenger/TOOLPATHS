@@ -14,7 +14,7 @@ TOOLPATHS has two licensing options. On first installation, **License key — lo
 1. In Rhino: open the Package Manager by running `_PackageManager`.
 2. Check **Include pre-releases** and search for **Toolpaths**, then install it.
 
-   <img src="../../Images/ddd0cBWrSU-1.png" width="33%">
+   <img src="../../../Images/ddd0cBWrSU-1.png" width="33%">
 
 ##  Add your local or trial license
 
@@ -24,7 +24,7 @@ After installing TOOLPATHS, the Toolpaths licensing popup opens:
 2. Paste your key.
 3. Click **Activate license**.
 
-   <img src="../../Images/s5aHYHkrek.png" alt="Select a local or trial license, paste the key, and click Activate license" width="70%">
+   <img src="../../../Images/s5aHYHkrek.png" alt="Select a local or trial license, paste the key, and click Activate license" width="70%">
 
 The dialog checks the entered key before saving it. If the key is invalid or expired, it remains open and shows the problem without changing the installed license.
 
@@ -34,19 +34,19 @@ After installing TOOLPATHS, the Toolpaths licensing popup opens:
 
 1. Choose **Rhino account — Cloud Zoo** and click **Continue with Rhino**.
 
-   <img src="../../Images/A8Zj5g2UTI.png" alt="Select Rhino account — Cloud Zoo and click Continue with Rhino" width="70%">
+   <img src="../../../Images/A8Zj5g2UTI.png" alt="Select Rhino account — Cloud Zoo and click Continue with Rhino" width="70%">
 
 2. The Rhino licensing popup opens; select **Add license**.
 
-   <img src="../../Images/RKo60iZ6pc.png" width="33%">
+   <img src="../../../Images/RKo60iZ6pc.png" width="33%">
 
 3. Your browser opens, asking you to add a license to your Rhino account.
 
-   <img src="../../Images/fwgwV4lnkA.png" width="33%">
+   <img src="../../../Images/fwgwV4lnkA.png" width="33%">
 
 4. Go back to Rhino and press **Try again**. Rhino should now fetch the license from Cloud Zoo.
 
-   <img src="../../Images/fDlRxXSiiT.png" width="33%">
+   <img src="../../../Images/fDlRxXSiiT.png" width="33%">
 
 ##  Change or disable your license
 

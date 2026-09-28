@@ -1,4 +1,4 @@
-![FDM workflow](../../Images/fdm_overview.png)
+![FDM workflow](../../../Images/fdm_overview.png)
 
 # FDM Overview
 
