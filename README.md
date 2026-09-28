@@ -55,8 +55,8 @@ The **FDM Toolpath** combines a curve with printing properties such as extrusion
 
 Connect a curve to the `Curve` input; a polyline is recommended. Other curve types are automatically converted to polylines with 0.3 mm sampling. You can also connect another Toolpath to inherit its settings.
 
-<details>
-<summary>Toolpath Inheritance</summary>
+
+Toolpath Inheritance
 
 ![Toolpath inheritance example](Images/pasted_20260511-101654.png)
 
@@ -66,19 +66,18 @@ In the example, each Toolpath keeps its own speed, while the Z-Hop value is set 
 
 If a property is not set locally or inherited from the connected Toolpath, the value from **FDM Defaults** is used.
 
-</details>
 
-<details>
-<summary>Toolpath Geometry</summary>
+
+Toolpath Geometry
 
 ![Transformed Toolpath geometry](Images/Rhino_1zHBruW1qc.avif)
 
 Toolpaths are geometry, so you can transform them with standard Grasshopper components such as Move, Array, and Transform. Toolpath properties stay attached through these transformations.
 
-</details>
 
-<details>
-<summary>Extrusion Modes</summary>
+
+
+Extrusion Modes
 
 TOOLPATHS has five extrusion modes. They define how much material is deposited for each millimeter of travel, or specify that no material is deposited.
 
@@ -92,7 +91,43 @@ TOOLPATHS has five extrusion modes. They define how much material is deposited f
 5. **No Extrusion Mode:** Moves the printer along the path without depositing material.
 
 **Flow** multiplies the extrusion amount calculated by the selected mode. For example, Auto Width Mode first calculates the volume needed to reach the target width, then applies the Flow multiplier. Flow can also be varied along the path with the Flow Modulator.
+<details>
+<summary>Extrusion Calculation</summary>
 
+
+TOOLPATHS simulates all extrusions in a global heightfield. The heightfield, extrusion calculation and preview mesh are tightly related.
+
+![fAgLSqPQ64](../Images/fAgLSqPQ64-2.png)  
+
+ Settings for the heightfield are exposed in FDM Defaults:
+
+![0N4zjvTrfB](../Images/0N4zjvTrfB-2.png)
+
+- Heightfield Resolution: HFRes defines the resolution of the heightfield. Details smaller than this cannot be captured.
+- Meshing Resolution: during simulation the toolpath is resampled based on this distance and at every point the heightfield is sampled. In Auto Width Mode the extrusion amount is calculated at every sample point.
+- Smoothing Window: The preview mesh is slightly smoothed by default, as extrusion can not change instantly. Affects preview only.
+
+#### Auto Extrusion and Degenerate Extrusion Detection
+
+Auto Width Mode is convenient, but it can produce unintended results.
+
+Example: the extrusion width is set to Auto Width 2 mm and the toolpath bridges over a gap. The algorithm evaluates the available height, which might be large (for example 10 cm if the bridge occurs higher in the print). Based on this, it attempts to deposit enough material so the extrusion approaches the target 2 mm width. This can lead to excessive material being extruded. Degenerate Extrusion Detection and layer-height limits are used to handle these cases by capping the amount of material that can be extruded.
+
+#### Degenerate Behavior
+
+A degenerate extrusion is an extrusion that has zero height or zero width. This can happen when a toolpath is too close to existing printed geometry. Degenerate modes handle zero-thickness points by either calculating replacement values from neighboring samples to maintain continuity (0) or flagging them as suppressed to omit them from the simulation (1).
+
+##### Degenerate Aspect Ratio:
+
+Extrusions with a width / height aspect ratio larger than this are considered degenerate.
+
+##### Layerheight Minimum:
+
+Extrusion with a layerheight smaller than this are considered degenerate.
+
+##### Layerheight Maximum:
+
+Extrusion with a layerheight larger than this are capped at this layerheight.
 </details>
 
 </details>
