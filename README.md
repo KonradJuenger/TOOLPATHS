@@ -1,6 +1,12 @@
+<details>
+<summary>About TOOLPATHS</summary>
+
 Toolpaths is a Grasshopper plugin for generating and simulating G-code. Its goal is to enable new ways of 3D printing and CNC milling while giving novices and experts alike full control of the machines movement.
 
-## Toolpaths core features
+</details>
+
+<details>
+<summary>Toolpaths core features</summary>
 
 - **Object-Oriented Toolpaths**
 
@@ -16,7 +22,10 @@ Settings follow a simple priority: **FDM Defaults** (lowest) → **inherited Too
 
 The FDM engine simulates material deposition rather than just visualizing a mesh pipe. By calculating volume buildup the solver enables features like automatic flow adjustment.
 
-## Install TOOLPATHS
+</details>
+
+<details>
+<summary>Install TOOLPATHS</summary>
 
 1. Get a trial key here: [ link ]
 2. In Rhino, run `_PackageManager`, enable **Include pre-releases**, search for **TOOLPATHS**, and install it.
@@ -24,7 +33,10 @@ The FDM engine simulates material deposition rather than just visualizing a mesh
 
 See the [licensing guide](deprecated/Docs/CORE/licensing.md) for other license types and details.
 
-# Quickstart
+</details>
+
+<details>
+<summary>Quickstart</summary>
 
 A **Toolpath** combines geometry with the properties used to print it. The **FDM Processor** collects the Toolpaths, applies defaults and machine settings, and creates one program. The **FDM Simulator** displays that program as a mesh, and **FDM G-Code Output** writes the program as G-code.
 
@@ -32,9 +44,10 @@ A **Toolpath** combines geometry with the properties used to print it. The **FDM
 
 [Download the Quickstart Grasshopper definition](docs-v3/examples/quickstart.gh) to explore the complete workflow.
 
-## Design Examples
+</details>
 
-### Vase Mode Example
+<details>
+<summary>Vase Mode Example</summary>
 
 ![Vase mode print setup](docs-v3/images/vasemode.png)
 
@@ -42,13 +55,19 @@ This example shows a vase-mode print with a solid bottom. The Vase Mode Generato
 
 [Download the Vase Mode Grasshopper definition](docs-v3/examples/vasemode.gh)
 
-## The main components
+</details>
+
+<details>
+<summary>The main components</summary>
 
 You can send multiple Toolpaths to the processor to make one program. Toolpath settings take precedence over defaults: a value set on a Toolpath is used for that Toolpath; otherwise, the processor uses the corresponding value from FDM Defaults.
 
 For more advanced workflows, Toolpaths can also inherit settings from other Toolpaths and be modified along their geometry.
 
-## FDM Toolpath
+</details>
+
+<details>
+<summary>FDM Toolpath</summary>
 
 The **FDM Toolpath** combines a curve with printing properties such as extrusion volume. Right-click the component to reveal its optional property inputs.
 
@@ -56,7 +75,8 @@ The **FDM Toolpath** combines a curve with printing properties such as extrusion
 
 Connect a curve to the `Curve` input; a polyline is recommended. Other curve types are automatically converted to polylines with 0.3 mm sampling. You can also connect another Toolpath to inherit its settings.
 
-### Toolpath Inheritance
+<details>
+<summary>Toolpath Inheritance</summary>
 
 ![Toolpath inheritance example](Images/pasted_20260511-101654.png)
 
@@ -66,13 +86,19 @@ In the example, each Toolpath keeps its own speed, while the Z-Hop value is set 
 
 If a property is not set locally or inherited from the connected Toolpath, the value from **FDM Defaults** is used.
 
-### Toolpath Geometry
+</details>
+
+<details>
+<summary>Toolpath Geometry</summary>
 
 ![Transformed Toolpath geometry](Images/Rhino_1zHBruW1qc.avif)
 
 Toolpaths are geometry, so you can transform them with standard Grasshopper components such as Move, Array, and Transform. Toolpath properties stay attached through these transformations.
 
-### Extrusion Modes
+</details>
+
+<details>
+<summary>Extrusion Modes</summary>
 
 TOOLPATHS has five extrusion modes. They define how much material is deposited for each millimeter of travel, or specify that no material is deposited.
 
@@ -87,7 +113,12 @@ TOOLPATHS has five extrusion modes. They define how much material is deposited f
 
 **Flow** multiplies the extrusion amount calculated by the selected mode. For example, Auto Width Mode first calculates the volume needed to reach the target width, then applies the Flow multiplier. Flow can also be varied along the path with the Flow Modulator.
 
-FDM Machine
+</details>
+
+</details>
+
+<details>
+<summary>FDM Machine</summary>
 
 The **FDM Machine** bundles the static settings that describe the 3D printer.
 
@@ -104,7 +135,10 @@ The **FDM Machine** bundles the static settings that describe the 3D printer.
 | **Toolchange**   | G-code to run at each toolchange. Use `[next_extruder]` for the next extruder index, for example `T[next_extruder]`.                             |
 | **Center**       | Moves the print to the center of the build plate.                                                                                                |
 
-FDM Defaults
+</details>
+
+<details>
+<summary>FDM Defaults</summary>
 
 **FDM Defaults** provides global process settings to the FDM Processor. These values are used when a Toolpath does not define or inherit the corresponding property. Right-click the component to add optional inputs.
 
@@ -135,13 +169,17 @@ FDM Defaults
 
 The component outputs one **Defaults** object. Connect it to the `Defaults` input of the FDM Processor.
 
-FDM Processor
+</details>
+
+<details>
+<summary>FDM Processor</summary>
 
 The **FDM Processor** resolves Toolpaths, machine settings, and process defaults into one program and provides the data needed for simulation and output.
 
 ![FDM Processor component](docs-v3/images/processor.png)
 
-### Inputs
+<details>
+<summary>Inputs</summary>
 
 | Input              | Nickname   | Default      | Description                                                         |
 | ------------------ | ---------- | ------------ | ------------------------------------------------------------------- |
@@ -150,7 +188,10 @@ The **FDM Processor** resolves Toolpaths, machine settings, and process defaults
 | **Defaults**       | `Defaults` | —            | Optional FDM process defaults.                                      |
 | **Processor Mode** | `Mode`     | `2` (Hybrid) | Selects preview and simulation behavior.                            |
 
-### Processor Modes
+</details>
+
+<details>
+<summary>Processor Modes</summary>
 
 | Value | Mode           | Description                                                                                                                               |
 | ----- | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
@@ -158,7 +199,10 @@ The **FDM Processor** resolves Toolpaths, machine settings, and process defaults
 | `1`   | **Preview**    | Builds a fast preview. G-code, robot, and other export outputs are unavailable in this mode.                                              |
 | `2`   | **Hybrid**     | Shows a fast preview first, then replaces it with the full simulation. Export outputs become available when the full simulation finishes. |
 
-### Outputs
+</details>
+
+<details>
+<summary>Outputs</summary>
 
 | Output              | Nickname | Description                                                                            |
 | ------------------- | -------- | -------------------------------------------------------------------------------------- |
@@ -166,13 +210,19 @@ The **FDM Processor** resolves Toolpaths, machine settings, and process defaults
 | **Errors**          | `E`      | Errors reported while building the program.                                            |
 | **Warnings**        | `W`      | Warnings reported while building the program.                                          |
 
-FDM Simulator
+</details>
+
+</details>
+
+<details>
+<summary>FDM Simulator</summary>
 
 The **FDM Simulator** displays the program as a mesh preview and provides controls for playback and visualization.
 
 ![FDM Simulator component](docs-v3/images/simulator.png)
 
-### Inputs
+<details>
+<summary>Inputs</summary>
 
 | Input                | Nickname | Default | Description                                                                      |
 | -------------------- | -------- | ------- | -------------------------------------------------------------------------------- |
@@ -187,7 +237,10 @@ The **FDM Simulator** displays the program as a mesh preview and provides contro
 | **Disable Preview**  | `Hide`   | `False` | Disables viewport previews and conduits when enabled.                            |
 | **UV Scale**         | `UVs`    | `0.01`  | Optional texture-coordinate scale. Add it from the component's right-click menu. |
 
-### Outputs
+</details>
+
+<details>
+<summary>Outputs</summary>
 
 | Output               | Nickname | Description                                        |
 | -------------------- | -------- | -------------------------------------------------- |
@@ -196,13 +249,19 @@ The **FDM Simulator** displays the program as a mesh preview and provides contro
 | **Tool Position**    | `P`      | Current toolhead position.                         |
 | **Program Duration** | `Dur`    | Total program duration in a human-readable format. |
 
-## FDM G-code Output
+</details>
+
+</details>
+
+<details>
+<summary>FDM G-code Output</summary>
 
 The **FDM G-code Output** component compiles the FDM program into machine-specific G-code. It can save the file to disk or upload it to a supported printer.
 
 ![FDM G-code Output component](docs-v3/images/fdm-gcode.png)
 
-### Inputs
+<details>
+<summary>Inputs</summary>
 
 | Input | Nickname | Default | Description |
 | --- | --- | --- | --- |
@@ -216,7 +275,10 @@ The **FDM G-code Output** component compiles the FDM program into machine-specif
 | **Template 3MF** | `Template` | — | For Bambu printers, path to a `.gcode.3mf` template file from Bambu Studio. |
 | **Output G-code** | `Out` | `False` | Outputs the compiled G-code to Grasshopper. This can be slow for very large files. |
 
-### Outputs
+</details>
+
+<details>
+<summary>Outputs</summary>
 
 | Output | Nickname | Description |
 | --- | --- | --- |
@@ -225,3 +287,7 @@ The **FDM G-code Output** component compiles the FDM program into machine-specif
 | **Info** | `Info` | Save and upload status. |
 | **Verbose Debug** | `D` | Detailed output of individual machine movements when **Output G-code** is enabled. |
 | **Toolpath Debug** | `TD` | Summary of toolpath structure and properties when **Output G-code** is enabled. |
+
+</details>
+
+</details>
