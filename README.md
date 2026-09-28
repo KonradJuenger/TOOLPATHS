@@ -190,8 +190,7 @@ The **FDM Processor** resolves Toolpaths, machine settings, and process defaults
 
 ![FDM Processor component](docs-v3/images/processor.png)
 
-<details>
-<summary>Inputs</summary>
+### Inputs
 
 | Input              | Nickname   | Default      | Description                                                         |
 | ------------------ | ---------- | ------------ | ------------------------------------------------------------------- |
@@ -200,10 +199,7 @@ The **FDM Processor** resolves Toolpaths, machine settings, and process defaults
 | **Defaults**       | `Defaults` | —            | Optional FDM process defaults.                                      |
 | **Processor Mode** | `Mode`     | `2` (Hybrid) | Selects preview and simulation behavior.                            |
 
-</details>
-
-<details>
-<summary>Processor Modes</summary>
+### Processor Modes
 
 | Value | Mode           | Description                                                                                                                               |
 | ----- | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
@@ -211,18 +207,13 @@ The **FDM Processor** resolves Toolpaths, machine settings, and process defaults
 | `1`   | **Preview**    | Builds a fast preview. G-code, robot, and other export outputs are unavailable in this mode.                                              |
 | `2`   | **Hybrid**     | Shows a fast preview first, then replaces it with the full simulation. Export outputs become available when the full simulation finishes. |
 
-</details>
-
-<details>
-<summary>Outputs</summary>
+### Outputs
 
 | Output              | Nickname | Description                                                                            |
 | ------------------- | -------- | -------------------------------------------------------------------------------------- |
 | **Simulation Data** | `D`      | Program and simulation data. Connect this to the FDM Simulator or an output component. |
 | **Errors**          | `E`      | Errors reported while building the program.                                            |
 | **Warnings**        | `W`      | Warnings reported while building the program.                                          |
-
-</details>
 
 </details>
 
@@ -233,8 +224,7 @@ The **FDM Simulator** displays the program as a mesh preview and provides contro
 
 ![FDM Simulator component](docs-v3/images/simulator.png)
 
-<details>
-<summary>Inputs</summary>
+### Inputs
 
 | Input                | Nickname | Default | Description                                                                      |
 | -------------------- | -------- | ------- | -------------------------------------------------------------------------------- |
@@ -249,10 +239,7 @@ The **FDM Simulator** displays the program as a mesh preview and provides contro
 | **Disable Preview**  | `Hide`   | `False` | Disables viewport previews and conduits when enabled.                            |
 | **UV Scale**         | `UVs`    | `0.01`  | Optional texture-coordinate scale. Add it from the component's right-click menu. |
 
-</details>
-
-<details>
-<summary>Outputs</summary>
+### Outputs
 
 | Output               | Nickname | Description                                        |
 | -------------------- | -------- | -------------------------------------------------- |
@@ -263,8 +250,6 @@ The **FDM Simulator** displays the program as a mesh preview and provides contro
 
 </details>
 
-</details>
-
 <details>
 <summary>FDM G-code Output</summary>
 
@@ -272,8 +257,7 @@ The **FDM G-code Output** component compiles the FDM program into machine-specif
 
 ![FDM G-code Output component](docs-v3/images/fdm-gcode.png)
 
-<details>
-<summary>Inputs</summary>
+### Inputs
 
 | Input | Nickname | Default | Description |
 | --- | --- | --- | --- |
@@ -287,10 +271,7 @@ The **FDM G-code Output** component compiles the FDM program into machine-specif
 | **Template 3MF** | `Template` | — | For Bambu printers, path to a `.gcode.3mf` template file from Bambu Studio. |
 | **Output G-code** | `Out` | `False` | Outputs the compiled G-code to Grasshopper. This can be slow for very large files. |
 
-</details>
-
-<details>
-<summary>Outputs</summary>
+### Outputs
 
 | Output | Nickname | Description |
 | --- | --- | --- |
@@ -299,8 +280,6 @@ The **FDM G-code Output** component compiles the FDM program into machine-specif
 | **Info** | `Info` | Save and upload status. |
 | **Verbose Debug** | `D` | Detailed output of individual machine movements when **Output G-code** is enabled. |
 | **Toolpath Debug** | `TD` | Summary of toolpath structure and properties when **Output G-code** is enabled. |
-
-</details>
 
 </details>
 
@@ -361,20 +340,15 @@ Toolpaths is built to give designers fine-grained control at the level of indivi
 
 To support this workflow, Toolpaths includes a small set of curve-generation components called **Generators**. Generators output **polylines**, not Toolpath objects.
 
-<details>
-<summary>2D Generators</summary>
+### 2D Generators
 
-<details>
-<summary>Infill Generator</summary>
+#### Infill Generator
 
 ![Infill Generator component](Images/ZWCFJTWDUm-2.png)
 
 The Infill Generator fills a planar polygon with patterns such as Gyroid or Monotonic infill. By default, the input region is offset inward by half the infill spacing to avoid overlap between walls and infill. Adjust the offset through the Infill Offset input.
 
-</details>
-
-<details>
-<summary>Walls Generator</summary>
+#### Walls Generator
 
 ![Walls Generator component](Images/jRQN4kCcjt-2.png)
 
@@ -382,24 +356,15 @@ The Walls Generator creates multiple inward offsets of the input polygon. The fi
 
 Walls Generator can also be used for outward offsets or with explicit values. Right-click the component for options.
 
-</details>
-
-<details>
-<summary>Walls + Infill</summary>
+#### Walls + Infill
 
 ![Walls and Infill Generators combined](Images/fAsok5v7r6-2.png)
 
 The Walls and Infill Generators can be combined to fill a polygon. Connect the Infill Curves output from the Walls Generator to the Infill Generator.
 
-</details>
+### 3D Generators
 
-</details>
-
-<details>
-<summary>3D Generators</summary>
-
-<details>
-<summary>Planar Slice Generator</summary>
+#### Planar Slice Generator
 
 ![Planar Slice Generator component](Images/R00Dycugdw-2.png)
 
@@ -407,10 +372,7 @@ The Planar Slice Generator slices the input geometry into horizontal layers. Int
 
 Brep-Plane intersection curves are resampled and output as polylines. Convert the input to mesh for faster slicing.
 
-</details>
-
-<details>
-<summary>Vase Mode Generator</summary>
+#### Vase Mode Generator
 
 ![Vase Mode Generator component](Images/MXRsVY8iek-2.png)
 
@@ -429,10 +391,6 @@ Base and top thickness can be used to slice the start and end of the shape into 
 The center axis is usually inferred from the bounding box center and points straight in the Z direction. For slanted input geometry, it may help to define a tilted axis explicitly.
 
 [Open the Vase Mode example](docs-v3/examples/vasemode.gh) to inspect the complete workflow.
-
-</details>
-
-</details>
 
 </details>
 
