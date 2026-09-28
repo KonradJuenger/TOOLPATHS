@@ -1,4 +1,4 @@
-Toolpaths is a Grasshopper plugin for generating and simulating G-code. Its goal is to enable new ways of 3D printing and CNC milling while giving novices and experts alike full control of the machines movement.
+Toolpaths is a Grasshopper plugin for generating and simulating G-code. Its goal is to enable new ways of 3D printing and CNC milling while giving novices and experts alike full control of the machine's movement.
 
 ## Toolpaths core features
 
@@ -18,7 +18,7 @@ The FDM engine simulates material deposition rather than just visualizing a mesh
 
 ## Install TOOLPATHS
 
-1. Get a trial key here: [ link ]
+1. Request a trial key at [toolpaths@juengerkuehn.com](mailto:toolpaths@juengerkuehn.com).
 2. In Rhino, run `_PackageManager`, enable **Include pre-releases**, search for **TOOLPATHS**, and install it.
 3. When the licensing dialog opens, paste your trial key under **License key — local or trial** and click **Activate license**. To use a Rhino account license instead, choose **Rhino account — Cloud Zoo** and click **Continue with Rhino**.
 
@@ -40,11 +40,8 @@ This example shows a vase-mode print with a solid bottom. The Vase Mode Generato
 
 [Download the Vase Mode Grasshopper definition](docs-v3/examples/vasemode.gh)
 
-## The main components
+## Main Components
 
-You can send multiple Toolpaths to the processor to make one program. Toolpath settings take precedence over defaults: a value set on a Toolpath is used for that Toolpath; otherwise, the processor uses the corresponding value from FDM Defaults.
-
-For more advanced workflows, Toolpaths can also inherit settings from other Toolpaths and be modified along their geometry.
 
 <details>
 <summary>FDM Toolpath</summary>
@@ -56,7 +53,7 @@ The **FDM Toolpath** combines a curve with printing properties such as extrusion
 Connect a curve to the `Curve` input; a polyline is recommended. Other curve types are automatically converted to polylines with 0.3 mm sampling. You can also connect another Toolpath to inherit its settings.
 
 
-Toolpath Inheritance
+### Toolpath Inheritance
 
 ![Toolpath inheritance example](Images/pasted_20260511-101654.png)
 
@@ -68,7 +65,7 @@ If a property is not set locally or inherited from the connected Toolpath, the v
 
 
 
-Toolpath Geometry
+### Toolpath Geometry
 
 ![Transformed Toolpath geometry](Images/Rhino_1zHBruW1qc.avif)
 
@@ -77,7 +74,7 @@ Toolpaths are geometry, so you can transform them with standard Grasshopper comp
 
 
 
-Extrusion Modes
+### Extrusion Modes
 
 TOOLPATHS has five extrusion modes. They define how much material is deposited for each millimeter of travel, or specify that no material is deposited.
 
@@ -97,15 +94,15 @@ TOOLPATHS has five extrusion modes. They define how much material is deposited f
 
 TOOLPATHS simulates all extrusions in a global heightfield. The heightfield, extrusion calculation and preview mesh are tightly related.
 
-![fAgLSqPQ64](../Images/fAgLSqPQ64-2.png)  
+![Extrusion heightfield preview](Images/fAgLSqPQ64-2.png)
 
  Settings for the heightfield are exposed in FDM Defaults:
 
-![0N4zjvTrfB](../Images/0N4zjvTrfB-2.png)
+![FDM Defaults heightfield settings](Images/0N4zjvTrfB-2.png)
 
 - Heightfield Resolution: HFRes defines the resolution of the heightfield. Details smaller than this cannot be captured.
 - Meshing Resolution: during simulation the toolpath is resampled based on this distance and at every point the heightfield is sampled. In Auto Width Mode the extrusion amount is calculated at every sample point.
-- Smoothing Window: The preview mesh is slightly smoothed by default, as extrusion can not change instantly. Affects preview only.
+- Smoothing Window: The preview mesh is slightly smoothed by default, as extrusion cannot change instantly. Affects preview only.
 
 #### Auto Extrusion and Degenerate Extrusion Detection
 
@@ -121,13 +118,13 @@ A degenerate extrusion is an extrusion that has zero height or zero width. This 
 
 Extrusions with a width / height aspect ratio larger than this are considered degenerate.
 
-##### Layerheight Minimum:
+##### Minimum Layer Height
 
-Extrusion with a layerheight smaller than this are considered degenerate.
+Extrusions with a layer height smaller than this are considered degenerate.
 
-##### Layerheight Maximum:
+##### Maximum Layer Height
 
-Extrusion with a layerheight larger than this are capped at this layerheight.
+Extrusions with a layer height larger than this are capped at this height.
 </details>
 
 </details>
@@ -304,5 +301,152 @@ The **FDM G-code Output** component compiles the FDM program into machine-specif
 | **Toolpath Debug** | `TD` | Summary of toolpath structure and properties when **Output G-code** is enabled. |
 
 </details>
+
+</details>
+
+<details>
+<summary>Modulators</summary>
+
+![Modulator components](Images/wNPmRyUg24.png)
+
+Modulators change a Toolpath after it has been created. They vary parameters along a path or reshape its geometry. A modulator takes a Toolpath as input and outputs a new Toolpath with the modulation applied. Most modulators work per segment or per vertex. For example, the Flow Modulator writes a flow multiplier for every segment, while displacement modulators move the Toolpath vertices.
+
+Typical uses include:
+
+- varying extrusion flow along a path
+- changing print speed per segment
+- changing extruder temperature along a path
+- displacing a path with vectors, normals, or an interpolated vector field
+
+Numeric modulators such as Flow, Speed, and Extruder Temperature use a shared mapping system. A single value can be applied to the whole Toolpath, or a list of values can be mapped onto the path using a Vertex Mapping Strategy.
+
+![Vertex mapping strategy options](Images/veoBqzWTWN-2.png)
+
+**Vertex Mapping Strategies:**
+
+- **Constant**: use the first value everywhere
+- **OneToOne**: one value for every vertex
+- **Wrap**: repeat the value list along the path
+- **RepeatLast**: use the final value after the list runs out
+- **Normalized-Stepped**: distribute values along the normalized length of the path in steps
+- **Normalized-Interpolated**: interpolate smoothly between values along the normalized length of the path
+
+[Open the Flow Modulator example](Examples/toolpath_flow-modulator_beta-24.gh) to see per-segment flow control.
+
+</details>
+
+<details>
+<summary>Masks</summary>
+
+![Mask components](Images/MJQBQnKHZt-3.png)
+
+Masks control the strength of a modulator along a Toolpath. They are lists of numeric values, usually mapped per segment or per vertex.
+
+Common values:
+
+- 0 = no effect
+- 1 = full effect
+- 0..1 = blended effect
+
+Some modulators clamp masks to 0..1. Others use the mask as a direct multiplier, so values above 1 can amplify the effect and negative values can invert it. For predictable results, use 0..1 unless overdriving is intentional.
+
+Masks do not modify Toolpaths by themselves. They are connected to modulators to restrict, fade, or scale effects, for example by region or along a gradient.
+
+</details>
+
+<details>
+<summary>Generators</summary>
+
+Toolpaths is built to give designers fine-grained control at the level of individual extrusions. It does not focus on automatic slicing or fully automated toolpath generation. Instead, users define and design the curves themselves.
+
+To support this workflow, Toolpaths includes a small set of curve-generation components called **Generators**. Generators output **polylines**, not Toolpath objects.
+
+<details>
+<summary>2D Generators</summary>
+
+<details>
+<summary>Infill Generator</summary>
+
+![Infill Generator component](Images/ZWCFJTWDUm-2.png)
+
+The Infill Generator fills a planar polygon with patterns such as Gyroid or Monotonic infill. By default, the input region is offset inward by half the infill spacing to avoid overlap between walls and infill. Adjust the offset through the Infill Offset input.
+
+</details>
+
+<details>
+<summary>Walls Generator</summary>
+
+![Walls Generator component](Images/jRQN4kCcjt-2.png)
+
+The Walls Generator creates multiple inward offsets of the input polygon. The first offset is positioned at 0.5 × line width from the polygon boundary, ensuring the extrusion fills up to the edge without overlap.
+
+Walls Generator can also be used for outward offsets or with explicit values. Right-click the component for options.
+
+</details>
+
+<details>
+<summary>Walls + Infill</summary>
+
+![Walls and Infill Generators combined](Images/fAsok5v7r6-2.png)
+
+The Walls and Infill Generators can be combined to fill a polygon. Connect the Infill Curves output from the Walls Generator to the Infill Generator.
+
+</details>
+
+</details>
+
+<details>
+<summary>3D Generators</summary>
+
+<details>
+<summary>Planar Slice Generator</summary>
+
+![Planar Slice Generator component](Images/R00Dycugdw-2.png)
+
+The Planar Slice Generator slices the input geometry into horizontal layers. Intersections are calculated at each layer’s midpoint, but the output polylines are placed at the layer ceiling. This matches the actual extrusion behavior: the nozzle deposits material downward, so the middle of the printed layer aligns with the intersection plane.
+
+Brep-Plane intersection curves are resampled and output as polylines. Convert the input to mesh for faster slicing.
+
+</details>
+
+<details>
+<summary>Vase Mode Generator</summary>
+
+![Vase Mode Generator component](Images/MXRsVY8iek-2.png)
+
+The Vase Mode Generator creates a helical path on the surface of the input geometry. The output curve is also resampled either by length (sampling mode = 1, default) or angle (sampling mode = 0). Length-based sampling produces consistent distances between sampling points. Angle-based sampling results in vertically aligned control points.
+
+![Staggered vase mode sampling](Images/Rhino_JKhFmoPmOff-2.png)
+
+Angle-based sampling can be staggered so that the pattern alternates and repeats every N layers. Stagger can be combined with the Normal Displacement Modifier to create seamless surface patterns.
+
+![Staggered control points](Images/stagger-2.png)
+
+Base and top thickness can be used to slice the start and end of the shape into planar layers, commonly to create a solid bottom layer.
+
+![Vase mode center axis](Images/QHXXSph7ny-2.png)
+
+The center axis is usually inferred from the bounding box center and points straight in the Z direction. For slanted input geometry, it may help to define a tilted axis explicitly.
+
+[Open the Vase Mode example](docs-v3/examples/vasemode.gh) to inspect the complete workflow.
+
+</details>
+
+</details>
+
+</details>
+
+<details>
+<summary>Layer Height Field</summary>
+
+![Layer Height Field component](Images/psQib6WfL8-2-2.png)
+
+Vase Mode Generator and Planar Slice Generator can produce varying layer heights based on a Layer Height Field. Use the Layer Height Generator to create fields by interpolating explicit values or using the slope of input geometry. The number of output layers is automatically determined to achieve the target density.
+
+![Layer height profile settings](Images/3NdaDaYcJK-2-2.png)
+
+A profile curve, together with minimum and maximum layer height values, can be used to vary layer height based on slope. By default, the mapping is absolute: horizontal areas map to `MinH`, and vertical areas map to `MaxH`.
+
+Enable Normalize Input by right-clicking the Layer Height Generator to remap the actual slope or curvature range of the input geometry to the full `[MinH..MaxH]` range. This makes the layer height variation relative to the geometry itself, rather than to an absolute horizontal-to-vertical range.
 
 </details>
