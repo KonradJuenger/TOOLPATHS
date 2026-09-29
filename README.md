@@ -6,17 +6,17 @@ Toolpaths is a Grasshopper plugin for generating and simulating G-code. Its goal
 
 - **Object-Oriented Toolpaths**
 
-The core data type is the Toolpath, which encapsulates a curve with its associated metadata (speed, extrusion, etc.) into a single object.  
-*Granularity*: Assign parameters per-path or per-segment.  
-*Compatibility*: A Toolpath object remains a standard Grasshopper geometry type, allowing you to use native components for transformations without losing metadata.
+  The core data type is the Toolpath, which encapsulates a curve with its associated metadata (speed, extrusion, etc.) into a single object.<br>
+  *Granularity*: Assign parameters per-path or per-segment.<br>
+  *Compatibility*: A Toolpath object remains a standard Grasshopper geometry type, allowing you to use native components for transformations without losing metadata.
 
 - **Toolpath Inheritance**
 
-Settings follow a simple priority: **FDM Defaults** (lowest) → **inherited Toolpath settings** → **local Toolpath overrides** (highest). Connect one Toolpath to another to inherit its settings, then override only the values that need to change.
+  Settings follow a simple priority: **FDM Defaults** (lowest) → **inherited Toolpath settings** → **local Toolpath overrides** (highest). Connect one Toolpath to another to inherit its settings, then override only the values that need to change.
 
 - **Simulation**
 
-The FDM engine simulates material deposition rather than just visualizing a mesh pipe. By calculating volume buildup the solver enables features like automatic flow adjustment.
+  The FDM engine simulates material deposition rather than just visualizing a mesh pipe. By calculating volume buildup the solver enables features like automatic flow adjustment.
 
 ### Install
 
@@ -46,9 +46,13 @@ This example shows a vase-mode print with a solid bottom. The Vase Mode Generato
 
 ![Further TOOLPATHS examples](docs-v3/images/examples.jpg)
 
-- [Download the Non-planar Slicing example](Examples/toolpath_nonplanar-slicing_beta-24.gh)
-- [Download the Image Map example](Examples/toolpath_image_map-beta-24.gh)
-- [Download the Vector Field Modulator example](Examples/toolpath_vectorFieldModulator-beta-24.gh)
+<table>
+  <tr>
+    <td><a href="Examples/toolpath_nonplanar-slicing_beta-24.gh">Download the Non-planar Slicing example</a></td>
+    <td><a href="Examples/toolpath_image_map-beta-24.gh">Download the Image Map example</a></td>
+    <td><a href="Examples/toolpath_vectorFieldModulator-beta-24.gh">Download the Vector Field Modulator example</a></td>
+  </tr>
+</table>
 
 ### Concepts
 
@@ -91,7 +95,8 @@ TOOLPATHS has five extrusion modes. They define how much material is deposited f
 
 **Flow** multiplies the extrusion amount calculated by the selected mode. For example, Auto Width Mode first calculates the volume needed to reach the target width, then applies the Flow multiplier. Flow can also be varied along the path with the Flow Modulator.
 
-#### Extrusion Calculation
+<details>
+<summary>Extrusion Calculation</summary>
 
 TOOLPATHS simulates all extrusions in a global heightfield. The heightfield, extrusion calculation and preview mesh are tightly related.
 
@@ -127,7 +132,10 @@ Extrusions with a layer height smaller than this are considered degenerate.
 
 Extrusions with a layer height larger than this are capped at this height.
 
-Modulators
+</details>
+
+<details>
+<summary>Modulators</summary>
 
 Modulators change a Toolpath after it has been created. They vary parameters along a path or reshape its geometry. A modulator takes a Toolpath as input and outputs a new Toolpath with the modulation applied. Most modulators work per segment or per vertex. For example, the Flow Modulator writes a flow multiplier for every segment, while displacement modulators move the Toolpath vertices.
 
@@ -151,7 +159,10 @@ Numeric modulators such as Flow, Speed, and Extruder Temperature use the **Verte
 
 [Download the Flow Modulator example](Examples/toolpath_flow-modulator_beta-24.gh)
 
-Masks
+</details>
+
+<details>
+<summary>Masks</summary>
 
 ![Mask components](Images/MJQBQnKHZt-3.png)
 
@@ -167,13 +178,16 @@ Some modulators clamp masks to 0..1. Others use the mask as a direct multiplier,
 
 Masks do not modify Toolpaths by themselves. They are connected to modulators to restrict, fade, or scale effects, for example by region or along a gradient.
 
+</details>
+
 Generators
 
 Toolpaths is built to give designers fine-grained control at the level of individual extrusions. It does not focus on automatic slicing or fully automated toolpath generation. Instead, users define and design the curves themselves.
 
 To support this workflow, Toolpaths includes a small set of curve-generation components called **Generators**. Generators output **polylines**, not Toolpath objects.
 
-#### 2D Generators
+<details>
+<summary>2D Generators</summary>
 
 ##### Infill Generator
 
@@ -195,7 +209,10 @@ Walls Generator can also be used for outward offsets or with explicit values. Ri
 
 The Walls and Infill Generators can be combined to fill a polygon. Connect the Infill Curves output from the Walls Generator to the Infill Generator.
 
-#### 3D Generators
+</details>
+
+<details>
+<summary>3D Generators</summary>
 
 ##### Planar Slice Generator
 
@@ -225,13 +242,18 @@ The center axis is usually inferred from the bounding box center and points stra
 
 [Download the Vase Mode example](docs-v3/examples/vasemode.gh)
 
-Non-planar Slicing
+</details>
+
+<details>
+<summary>Non-planar Slicing</summary>
 
 Planar Transform maps the input geometry to a planar shape. Slice that shape, then use Non-Planar Transform to map the Toolpaths back to the original geometry.
 
 ![Non-planar slicing workflow](Images/8LpMRwAu2u-2.png)
 
 [Download the Non-planar Slicing example](Examples/toolpath_nonplanar-slicing_beta-24.gh)
+
+</details>
 
 Layer Height Field
 
