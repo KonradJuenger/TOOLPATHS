@@ -56,7 +56,7 @@ This example shows a vase-mode print with a solid bottom. The Vase Mode Generato
 
 ### Concepts
 ---
-FDM Toolpath
+#### FDM Toolpath
 
 The **FDM Toolpath** combines a curve with printing properties such as extrusion volume. Right-click the component to reveal its optional property inputs.
 
@@ -134,6 +134,7 @@ Extrusions with a layer height larger than this are capped at this height.
 
 </details>
 
+### Modulators
 <details>
 <summary>Modulators</summary>
 
@@ -157,12 +158,12 @@ Numeric modulators such as Flow, Speed, and Extruder Temperature use the **Verte
 | `4` | Normalized-Stepped | Distribute values along the normalized length of the path in steps. |
 | `5` | Normalized-Interpolated | Interpolate between values along the normalized length of the path. |
 
-[Download the Flow Modulator example](Examples/toolpath_flow-modulator_beta-24.gh)
 
 </details>
 
 <details>
-<summary>##Masks</summary>
+
+<summary>Masks</summary>
 
 ![Mask components](Images/MJQBQnKHZt-3.png)
 
