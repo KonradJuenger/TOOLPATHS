@@ -247,7 +247,9 @@ The center axis is usually inferred from the bounding box center and points stra
 [Download the Vase Mode example](docs-v3/examples/vasemode.gh)
 
 </details>
+
 ### Advanced Slicing
+---
 <details>
 <summary>Non-planar Slicing</summary>
 
@@ -275,7 +277,7 @@ Enable Normalize Input by right-clicking the Layer Height Generator to remap the
 </details>
 
 ### Component Reference
-
+---
 <details>
 <summary>FDM Machine</summary>
 
@@ -431,7 +433,7 @@ The **FDM G-code Output** component compiles the FDM program into machine-specif
 </details>
 
 ### Changelog
-
+---
 <details>
 <summary>Show version history</summary>
 
