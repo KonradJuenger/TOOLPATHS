@@ -2,7 +2,7 @@
 
 Toolpaths is a Grasshopper plugin for generating and simulating G-code. Its goal is to enable new ways of 3D printing and CNC milling while giving novices and experts alike full control of the machine's movement.
 
-#### Core Features
+### Core Features
 
 - **Object-Oriented Toolpaths**
 
@@ -27,7 +27,7 @@ Toolpaths is a Grasshopper plugin for generating and simulating G-code. Its goal
 See the [licensing guide](deprecated/Docs/CORE/licensing.md) for other license types and details.
 
 ### Quickstart
-
+---
 A **Toolpath** combines geometry with the properties used to print it. The **FDM Processor** collects the Toolpaths, applies defaults and machine settings, and creates one program. The **FDM Simulator** displays that program as a mesh, and **FDM G-Code Output** writes the program as G-code.
 
 ![Quickstart TOOLPATHS workflow](docs-v3/images/quickstart.png)
@@ -35,14 +35,14 @@ A **Toolpath** combines geometry with the properties used to print it. The **FDM
 [Download the Quickstart example](docs-v3/examples/quickstart.gh)
 
 ### Vase Mode Example
-
+---
 ![Vase mode print setup](docs-v3/images/vasemode.png)
 
 This example shows a vase-mode print with a solid bottom. The Vase Mode Generator creates the helical wall path and can also output planar base curves. These curves are used with the Walls and Infill Generators to fill the bottom.
 
 [Download the Vase Mode example](docs-v3/examples/vasemode.gh)
 
-### Further Examples
+##### Further Examples
 
 ![Further TOOLPATHS examples](docs-v3/images/examples.jpg)
 
@@ -55,7 +55,7 @@ This example shows a vase-mode print with a solid bottom. The Vase Mode Generato
 </table>
 
 ### Concepts
-
+---
 FDM Toolpath
 
 The **FDM Toolpath** combines a curve with printing properties such as extrusion volume. Right-click the component to reveal its optional property inputs.
@@ -162,7 +162,7 @@ Numeric modulators such as Flow, Speed, and Extruder Temperature use the **Verte
 </details>
 
 <details>
-<summary>Masks</summary>
+<summary>##Masks</summary>
 
 ![Mask components](Images/MJQBQnKHZt-3.png)
 
