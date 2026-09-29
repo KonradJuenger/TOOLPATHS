@@ -138,6 +138,8 @@ Extrusions with a layer height larger than this are capped at this height.
 <details>
 <summary>Modulators</summary>
 
+![Flow Modulator example](Images/wNPmRyUg24.png)
+
 Modulators change a Toolpath after it has been created. They vary parameters along a path or reshape its geometry. A modulator takes a Toolpath as input and outputs a new Toolpath with the modulation applied. Most modulators work per segment or per vertex. For example, the Flow Modulator writes a flow multiplier for every segment, while displacement modulators move the Toolpath vertices.
 
 Typical uses include:
@@ -162,7 +164,7 @@ Numeric modulators such as Flow, Speed, and Extruder Temperature use the **Verte
 </details>
 
 <details>
-
+###Masks
 <summary>Masks</summary>
 
 ![Mask components](Images/MJQBQnKHZt-3.png)
@@ -181,7 +183,7 @@ Masks do not modify Toolpaths by themselves. They are connected to modulators to
 
 </details>
 
-Generators
+### Generators
 
 Toolpaths is built to give designers fine-grained control at the level of individual extrusions. It does not focus on automatic slicing or fully automated toolpath generation. Instead, users define and design the curves themselves.
 
