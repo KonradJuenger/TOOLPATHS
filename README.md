@@ -24,27 +24,27 @@ Toolpaths is a Grasshopper plugin for generating and simulating G-code. Its goal
 2. In Rhino, run `_PackageManager`, enable **Include pre-releases**, search for **TOOLPATHS**, and install it.
 3. When the licensing dialog opens, paste your trial key under **License key — local or trial** and click **Activate license**. To use a Rhino account license instead, choose **Rhino account — Cloud Zoo** and click **Continue with Rhino**.
 
-See the [licensing guide](deprecated/Docs/CORE/licensing.md) for other license types and details.
+See the [licensing guide](docs/licensing.md) for other license types and details.
 
 ### Quickstart
 ---
 A **Toolpath** combines geometry with the properties used to print it. The **FDM Processor** collects the Toolpaths, applies defaults and machine settings, and creates one program. The **FDM Simulator** displays that program as a mesh, and **FDM G-Code Output** writes the program as G-code.
 
-![Quickstart TOOLPATHS workflow](docs-v3/images/quickstart.png)
+![Quickstart TOOLPATHS workflow](Images/quickstart-workflow.png)
 
-[Download the Quickstart example](docs-v3/examples/quickstart.gh)
+[Download the Quickstart example](Examples/quickstart.gh)
 
 ### Vase Mode Example
 ---
-![Vase mode print setup](docs-v3/images/vasemode.png)
+![Vase mode print setup](Images/vase-mode-print-setup.png)
 
 This example shows a vase-mode print with a solid bottom. The Vase Mode Generator creates the helical wall path and can also output planar base curves. These curves are used with the Walls and Infill Generators to fill the bottom.
 
-[Download the Vase Mode example](docs-v3/examples/vasemode.gh)
+[Download the Vase Mode example](Examples/vasemode.gh)
 
 ##### Further Examples
 
-![Further TOOLPATHS examples](docs-v3/images/examples.jpg)
+![Further TOOLPATHS examples](Images/examples.jpg)
 
 <table>
   <tr>
@@ -60,13 +60,13 @@ This example shows a vase-mode print with a solid bottom. The Vase Mode Generato
 
 The **FDM Toolpath** combines a curve with printing properties such as extrusion volume. Right-click the component to reveal its optional property inputs.
 
-![FDM Toolpath component](docs-v3/images/toolpaths-object.png)
+![FDM Toolpath component](Images/fdm-toolpath-component.png)
 
 Connect a curve to the `Curve` input; a polyline is recommended. Other curve types are automatically converted to polylines with 0.3 mm sampling. You can also connect another Toolpath to inherit its settings.
 
 #### Toolpath Inheritance
 
-![Toolpath inheritance example](Images/pasted_20260511-101654.png)
+![Toolpath inheritance example](Images/toolpath-inheritance-example.png)
 
 Toolpath components can be chained. A Toolpath inherits settings from the Toolpath connected to its input, then applies its own local overrides.
 
@@ -76,7 +76,7 @@ If a property is not set locally or inherited from the connected Toolpath, the v
 
 #### Toolpath Geometry
 
-![Transformed Toolpath geometry](Images/Rhino_1zHBruW1qc.avif)
+![Transformed Toolpath geometry](Images/transformed-toolpath-geometry.avif)
 
 Toolpaths are geometry, so you can transform them with standard Grasshopper components such as Move, Array, and Transform. Toolpath properties stay attached through these transformations.
 
@@ -84,11 +84,11 @@ Toolpaths are geometry, so you can transform them with standard Grasshopper comp
 
 TOOLPATHS has five extrusion modes. They define how much material is deposited for each millimeter of travel, or specify that no material is deposited.
 
-![Extrusion mode options](Images/LYrHOhfWVO-2.png)
+![Extrusion mode options](Images/extrusion-modes.png)
 
 1. **Volume Mode:** Sets the volume of material deposited per millimeter of travel. For example, `3 mm³/mm` deposits 3 mm³ of material for every millimeter traveled. The simulator uses the volume and the height of the material below the nozzle to calculate the preview geometry.
 2. **Static Mode:** Sets a fixed extrusion width and height. The simulation does not adapt the extrusion shape to the height of the material below the nozzle. This can be faster for large models.
-  ![Static extrusion mode](Images/XsDMSWZAtk-2-4.png)
+  ![Static extrusion mode](Images/static-extrusion-mode.png)
 3. **Auto Width Mode:** Sets a target extrusion width. TOOLPATHS calculates the required volume from the available height below the nozzle. This is useful when layer height varies, such as in non-planar printing.
 4. **Auto Ratio Mode:** Sets a target ratio between extrusion width and height. TOOLPATHS adjusts the extrusion volume to maintain that ratio.
 5. **No Extrusion Mode:** Moves the printer along the path without depositing material.
@@ -100,11 +100,11 @@ TOOLPATHS has five extrusion modes. They define how much material is deposited f
 
 TOOLPATHS simulates all extrusions in a global heightfield. The heightfield, extrusion calculation and preview mesh are tightly related.
 
-![Extrusion heightfield preview](Images/fAgLSqPQ64-2.png)
+![Extrusion heightfield preview](Images/extrusion-heightfield-preview.png)
 
 Settings for the heightfield are exposed in FDM Defaults:
 
-![FDM Defaults heightfield settings](Images/0N4zjvTrfB-2.png)
+![FDM Defaults heightfield settings](Images/fdm-defaults-heightfield-settings.png)
 
 - Heightfield Resolution: HFRes defines the resolution of the heightfield. Details smaller than this cannot be captured.
 - Meshing Resolution: during simulation the toolpath is resampled based on this distance and at every point the heightfield is sampled. In Auto Width Mode the extrusion amount is calculated at every sample point.
@@ -139,7 +139,7 @@ Extrusions with a layer height larger than this are capped at this height.
 <details>
 <summary>Modulators</summary>
 
-![Flow Modulator example](Images/wNPmRyUg24.png)
+![Flow Modulator example](Images/flow-modulator-example.png)
 
 Modulators change a Toolpath after it has been created. They vary parameters along a path or reshape its geometry. A modulator takes a Toolpath as input and outputs a new Toolpath with the modulation applied. Most modulators work per segment or per vertex. For example, the Flow Modulator writes a flow multiplier for every segment, while displacement modulators move the Toolpath vertices.
 
@@ -165,10 +165,10 @@ Numeric modulators such as Flow, Speed, and Extruder Temperature use the **Verte
 </details>
 
 <details>
-###Masks
+
 <summary>Masks</summary>
 
-![Mask components](Images/MJQBQnKHZt-3.png)
+![Mask components](Images/mask-components.png)
 
 Masks control the strength of a modulator along a Toolpath. They are lists of numeric values, usually mapped per segment or per vertex.
 
@@ -195,13 +195,13 @@ To support this workflow, Toolpaths includes a small set of curve-generation com
 
 ##### Infill Generator
 
-![Infill Generator component](Images/ZWCFJTWDUm-2.png)
+![Infill Generator component](Images/infill-generator.png)
 
 The Infill Generator fills a planar polygon with patterns such as Gyroid or Monotonic infill. By default, the input region is offset inward by half the infill spacing to avoid overlap between walls and infill. Adjust the offset through the Infill Offset input.
 
 ##### Walls Generator
 
-![Walls Generator component](Images/jRQN4kCcjt-2.png)
+![Walls Generator component](Images/walls-generator.png)
 
 The Walls Generator creates multiple inward offsets of the input polygon. The first offset is positioned at 0.5 × line width from the polygon boundary, ensuring the extrusion fills up to the edge without overlap.
 
@@ -209,7 +209,7 @@ Walls Generator can also be used for outward offsets or with explicit values. Ri
 
 ##### Walls + Infill
 
-![Walls and Infill Generators combined](Images/fAsok5v7r6-2.png)
+![Walls and Infill Generators combined](Images/walls-and-infill-generators.png)
 
 The Walls and Infill Generators can be combined to fill a polygon. Connect the Infill Curves output from the Walls Generator to the Infill Generator.
 
@@ -220,7 +220,7 @@ The Walls and Infill Generators can be combined to fill a polygon. Connect the I
 
 ##### Planar Slice Generator
 
-![Planar Slice Generator component](Images/R00Dycugdw-2.png)
+![Planar Slice Generator component](Images/planar-slice-generator.png)
 
 The Planar Slice Generator slices the input geometry into horizontal layers. Intersections are calculated at each layer’s midpoint, but the output polylines are placed at the layer ceiling. This matches the actual extrusion behavior: the nozzle deposits material downward, so the middle of the printed layer aligns with the intersection plane.
 
@@ -228,23 +228,23 @@ Brep-Plane intersection curves are resampled and output as polylines. Convert th
 
 ##### Vase Mode Generator
 
-![Vase Mode Generator component](Images/MXRsVY8iek-2.png)
+![Vase Mode Generator component](Images/vase-mode-generator.png)
 
 The Vase Mode Generator creates a helical path on the surface of the input geometry. The output curve is also resampled either by length (sampling mode = 1, default) or angle (sampling mode = 0). Length-based sampling produces consistent distances between sampling points. Angle-based sampling results in vertically aligned control points.
 
-![Staggered vase mode sampling](Images/Rhino_JKhFmoPmOff-2.png)
+![Staggered vase mode sampling](Images/vase-mode-sampling-comparison.png)
 
 Angle-based sampling can be staggered so that the pattern alternates and repeats every N layers. Stagger can be combined with the Normal Displacement Modifier to create seamless surface patterns.
 
-![Staggered control points](Images/stagger-2.png)
+![Staggered control points](Images/staggered-vase-mode-control-points.png)
 
 Base and top thickness can be used to slice the start and end of the shape into planar layers, commonly to create a solid bottom layer.
 
-![Vase mode center axis](Images/QHXXSph7ny-2.png)
+![Vase mode center axis](Images/vase-mode-center-axis.png)
 
 The center axis is usually inferred from the bounding box center and points straight in the Z direction. For slanted input geometry, it may help to define a tilted axis explicitly.
 
-[Download the Vase Mode example](docs-v3/examples/vasemode.gh)
+[Download the Vase Mode example](Examples/vasemode.gh)
 
 </details>
 
@@ -255,7 +255,7 @@ The center axis is usually inferred from the bounding box center and points stra
 
 Planar Transform maps the input geometry to a planar shape. Slice that shape, then use Non-Planar Transform to map the Toolpaths back to the original geometry.
 
-![Non-planar slicing workflow](Images/8LpMRwAu2u-2.png)
+![Non-planar slicing workflow](Images/nonplanar-slicing-workflow.png)
 
 [Download the Non-planar Slicing example](Examples/toolpath_nonplanar-slicing_beta-24.gh)
 
@@ -265,11 +265,11 @@ Planar Transform maps the input geometry to a planar shape. Slice that shape, th
 <summary>Layer Height Field</summary>
 
 
-![Layer Height Field component](Images/psQib6WfL8-2-2.png)
+![Layer Height Field component](Images/layer-height-field-component.png)
 
 Vase Mode Generator and Planar Slice Generator can produce varying layer heights based on a Layer Height Field. Use the Layer Height Generator to create fields by interpolating explicit values or using the slope of input geometry. The number of output layers is automatically determined to achieve the target density.
 
-![Layer height profile settings](Images/3NdaDaYcJK-2-2.png)
+![Layer height profile settings](Images/layer-height-profile-settings.png)
 
 A profile curve, together with minimum and maximum layer height values, can be used to vary layer height based on slope. By default, the mapping is absolute: horizontal areas map to `MinH`, and vertical areas map to `MaxH`.
 
@@ -283,7 +283,7 @@ Enable Normalize Input by right-clicking the Layer Height Generator to remap the
 
 The **FDM Machine** bundles the static settings that describe the 3D printer.
 
-![FDM Machine component and settings](<docs-v3/images/fdm machine.png>)
+![FDM Machine component and settings](<Images/fdm-machine-component.png>)
 
 | Setting          | Description                                                                                                                                      |
 | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -303,7 +303,7 @@ The **FDM Machine** bundles the static settings that describe the 3D printer.
 
 **FDM Defaults** provides global process settings to the FDM Processor. These values are used when a Toolpath does not define or inherit the corresponding property. Right-click the component to add optional inputs.
 
-![FDM Defaults component and settings](docs-v3/images/fdm-defaults.png)
+![FDM Defaults component and settings](Images/fdm-defaults-component.png)
 
 | Setting                      | Nickname      | Description                                                                                                                                                   |
 | ---------------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -337,7 +337,7 @@ The component outputs one **Defaults** object. Connect it to the `Defaults` inpu
 
 The **FDM Processor** resolves Toolpaths, machine settings, and process defaults into one program and provides the data needed for simulation and output.
 
-![FDM Processor component](docs-v3/images/processor.png)
+![FDM Processor component](Images/fdm-processor-component.png)
 
 #### Inputs
 
@@ -371,7 +371,7 @@ The **FDM Processor** resolves Toolpaths, machine settings, and process defaults
 
 The **FDM Simulator** displays the program as a mesh preview and provides controls for playback and visualization.
 
-![FDM Simulator component](docs-v3/images/simulator.png)
+![FDM Simulator component](Images/fdm-simulator-component.png)
 
 #### Inputs
 
@@ -404,7 +404,7 @@ The **FDM Simulator** displays the program as a mesh preview and provides contro
 
 The **FDM G-code Output** component compiles the FDM program into machine-specific G-code. It can save the file to disk or upload it to a supported printer.
 
-![FDM G-code Output component](docs-v3/images/fdm-gcode.png)
+![FDM G-code Output component](Images/fdm-gcode-output-component.png)
 
 #### Inputs
 
