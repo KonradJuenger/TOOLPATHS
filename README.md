@@ -437,6 +437,11 @@ The **FDM G-code Output** component compiles the FDM program into machine-specif
 <details>
 <summary>Show version history</summary>
 
+###### **0.3.0**
+
+- improved print centering and build-volume checks, with bounds errors shown on the FDM Processor and settings changes updating correctly
+- renamed the extruder temperature input nickname to **Temp** and added examples
+
 ###### **0.2.24-beta24**
 
 - faster and more responsive FDM previews
