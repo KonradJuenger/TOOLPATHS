@@ -38,7 +38,7 @@ A **Toolpath** combines geometry with the properties used to print it. The **FDM
 
 ![Vase mode print setup](docs-v3/images/vasemode.png)
 
-This example shows a vase-mode print with a solid bottom. The Vase Mode Generator creates the helical wall path and can also output planar base curves. These curves are used with the Walls and Infill Generators to fill the bottom. The definition also shows additional Toolpath settings and options such as staggering.
+This example shows a vase-mode print with a solid bottom. The Vase Mode Generator creates the helical wall path and can also output planar base curves. These curves are used with the Walls and Infill Generators to fill the bottom.
 
 [Download the Vase Mode example](docs-v3/examples/vasemode.gh)
 
@@ -129,8 +129,6 @@ Extrusions with a layer height larger than this are capped at this height.
 
 Modulators
 
-![Modulator components](Images/wNPmRyUg24.png)
-
 Modulators change a Toolpath after it has been created. They vary parameters along a path or reshape its geometry. A modulator takes a Toolpath as input and outputs a new Toolpath with the modulation applied. Most modulators work per segment or per vertex. For example, the Flow Modulator writes a flow multiplier for every segment, while displacement modulators move the Toolpath vertices.
 
 Typical uses include:
@@ -140,18 +138,16 @@ Typical uses include:
 - changing extruder temperature along a path
 - displacing a path with vectors, normals, or an interpolated vector field
 
-Numeric modulators such as Flow, Speed, and Extruder Temperature use a shared mapping system. A single value can be applied to the whole Toolpath, or a list of values can be mapped onto the path using a Vertex Mapping Strategy.
+Numeric modulators such as Flow, Speed, and Extruder Temperature use the **Vertex Mapping** input (`VMap`) to map a list of values onto a Toolpath. A single value applies throughout the Toolpath. For multiple values, choose one of these mapping options:
 
-![Vertex mapping strategy options](Images/veoBqzWTWN-2.png)
-
-**Vertex Mapping Strategies:**
-
-- **Constant**: use the first value everywhere
-- **OneToOne**: one value for every vertex
-- **Wrap**: repeat the value list along the path
-- **RepeatLast**: use the final value after the list runs out
-- **Normalized-Stepped**: distribute values along the normalized length of the path in steps
-- **Normalized-Interpolated**: interpolate smoothly between values along the normalized length of the path
+| Value | Vertex Mapping option | Behavior |
+| --- | --- | --- |
+| `0` | Constant | Use the first value everywhere. |
+| `1` | OneToOne | Require one value for every vertex. |
+| `2` | Wrap | Repeat the value list along the path. This is the default. |
+| `3` | RepeatLast | Use the final value after the list runs out. |
+| `4` | Normalized-Stepped | Distribute values along the normalized length of the path in steps. |
+| `5` | Normalized-Interpolated | Interpolate between values along the normalized length of the path. |
 
 [Download the Flow Modulator example](Examples/toolpath_flow-modulator_beta-24.gh)
 
