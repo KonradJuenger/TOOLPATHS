@@ -135,6 +135,7 @@ Extrusions with a layer height larger than this are capped at this height.
 </details>
 
 ### Modulators
+---
 <details>
 <summary>Modulators</summary>
 
@@ -184,7 +185,7 @@ Masks do not modify Toolpaths by themselves. They are connected to modulators to
 </details>
 
 ### Generators
-
+---
 Toolpaths is built to give designers fine-grained control at the level of individual extrusions. It does not focus on automatic slicing or fully automated toolpath generation. Instead, users define and design the curves themselves.
 
 To support this workflow, Toolpaths includes a small set of curve-generation components called **Generators**. Generators output **polylines**, not Toolpath objects.
@@ -246,7 +247,7 @@ The center axis is usually inferred from the bounding box center and points stra
 [Download the Vase Mode example](docs-v3/examples/vasemode.gh)
 
 </details>
-
+### Advanced Slicing
 <details>
 <summary>Non-planar Slicing</summary>
 
@@ -258,7 +259,9 @@ Planar Transform maps the input geometry to a planar shape. Slice that shape, th
 
 </details>
 
-Layer Height Field
+<details>
+<summary>Layer Height Field</summary>
+
 
 ![Layer Height Field component](Images/psQib6WfL8-2-2.png)
 
@@ -269,6 +272,7 @@ Vase Mode Generator and Planar Slice Generator can produce varying layer heights
 A profile curve, together with minimum and maximum layer height values, can be used to vary layer height based on slope. By default, the mapping is absolute: horizontal areas map to `MinH`, and vertical areas map to `MaxH`.
 
 Enable Normalize Input by right-clicking the Layer Height Generator to remap the actual slope or curvature range of the input geometry to the full `[MinH..MaxH]` range. This makes the layer height variation relative to the geometry itself, rather than to an absolute horizontal-to-vertical range.
+</details>
 
 ### Component Reference
 
