@@ -38,7 +38,7 @@ A **Toolpath** combines geometry with the properties used to print it. The **FDM
 ---
 ![Vase mode print setup](Images/vase-mode-print-setup.png)
 
-This example shows a vase-mode print with a solid bottom. The Vase Mode Generator creates the helical wall path and can also output planar base curves. These curves are used with the Walls and Infill Generators to fill the bottom.
+This example shows a vase-mode print with a solid bottom. The **Vase Mode Generator** creates the helical wall path and can also output planar base curves. These curves are used with the **Walls and Infill Generators** to fill the bottom.
 
 [Download the Vase Mode example](Examples/vasemode.gh)
 
@@ -50,13 +50,13 @@ This example shows a vase-mode print with a solid bottom. The Vase Mode Generato
   <tr>
     <td><a href="Examples/toolpath_nonplanar-slicing_beta-24.gh">Download the Non-planar Slicing example</a></td>
     <td><a href="Examples/toolpath_image_map-beta-24.gh">Download the Image Map example</a></td>
-    <td><a href="Examples/toolpath_vectorFieldModulator-beta-24.gh">Download the Vector Field Modulator example</a></td>
+    <td><a href="Examples/toolpath_vectorFieldModulator-beta-24.gh">Download the <strong>Vector Field Modulator</strong> example</a></td>
   </tr>
 </table>
 
 ### Concepts
 ---
-#### FDM Toolpath
+#### **FDM Toolpath**
 
 The **FDM Toolpath** combines a curve with printing properties such as extrusion volume. Right-click the component to reveal its optional property inputs.
 
@@ -93,7 +93,7 @@ TOOLPATHS has five extrusion modes. They define how much material is deposited f
 4. **Auto Ratio Mode:** Sets a target ratio between extrusion width and height. TOOLPATHS adjusts the extrusion volume to maintain that ratio.
 5. **No Extrusion Mode:** Moves the printer along the path without depositing material.
 
-**Flow** multiplies the extrusion amount calculated by the selected mode. For example, Auto Width Mode first calculates the volume needed to reach the target width, then applies the Flow multiplier. Flow can also be varied along the path with the Flow Modulator.
+**Flow** multiplies the extrusion amount calculated by the selected mode. For example, Auto Width Mode first calculates the volume needed to reach the target width, then applies the Flow multiplier. Flow can also be varied along the path with the **Flow Modulator**.
 
 <details>
 <summary>Extrusion Calculation</summary>
@@ -102,7 +102,7 @@ TOOLPATHS simulates all extrusions in a global heightfield. The heightfield, ext
 
 ![Extrusion heightfield preview](Images/extrusion-heightfield-preview.png)
 
-Settings for the heightfield are exposed in FDM Defaults:
+Settings for the heightfield are exposed in **FDM Defaults**:
 
 ![FDM Defaults heightfield settings](Images/fdm-defaults-heightfield-settings.png)
 
@@ -141,7 +141,7 @@ Extrusions with a layer height larger than this are capped at this height.
 
 ![Flow Modulator example](Images/flow-modulator-example.png)
 
-Modulators change a Toolpath after it has been created. They vary parameters along a path or reshape its geometry. A modulator takes a Toolpath as input and outputs a new Toolpath with the modulation applied. Most modulators work per segment or per vertex. For example, the Flow Modulator writes a flow multiplier for every segment, while displacement modulators move the Toolpath vertices.
+Modulators change a Toolpath after it has been created. They vary parameters along a path or reshape its geometry. A modulator takes a Toolpath as input and outputs a new Toolpath with the modulation applied. Most modulators work per segment or per vertex. For example, the **Flow Modulator** writes a flow multiplier for every segment, while displacement modulators move the Toolpath vertices.
 
 Typical uses include:
 
@@ -150,7 +150,7 @@ Typical uses include:
 - changing extruder temperature along a path
 - displacing a path with vectors, normals, or an interpolated vector field
 
-Numeric modulators such as Flow, Speed, and Extruder Temperature use the **Vertex Mapping** input (`VMap`) to map a list of values onto a Toolpath. A single value applies throughout the Toolpath. For multiple values, choose one of these mapping options:
+Numeric modulators such as **Flow**, **Speed**, and **Extruder Temperature** use the **Vertex Mapping** input (`VMap`) to map a list of values onto a Toolpath. A single value applies throughout the Toolpath. For multiple values, choose one of these mapping options:
 
 | Value | Vertex Mapping option | Behavior |
 | --- | --- | --- |
@@ -193,44 +193,44 @@ To support this workflow, Toolpaths includes a small set of curve-generation com
 <details>
 <summary>2D Generators</summary>
 
-##### Infill Generator
+##### **Infill Generator**
 
 ![Infill Generator component](Images/infill-generator.png)
 
-The Infill Generator fills a planar polygon with patterns such as Gyroid or Monotonic infill. By default, the input region is offset inward by half the infill spacing to avoid overlap between walls and infill. Adjust the offset through the Infill Offset input.
+The **Infill Generator** fills a planar polygon with patterns such as Gyroid or Monotonic infill. By default, the input region is offset inward by half the infill spacing to avoid overlap between walls and infill. Adjust the offset through the Infill Offset input.
 
-##### Walls Generator
+##### **Walls Generator**
 
 ![Walls Generator component](Images/walls-generator.png)
 
-The Walls Generator creates multiple inward offsets of the input polygon. The first offset is positioned at 0.5 × line width from the polygon boundary, ensuring the extrusion fills up to the edge without overlap.
+The **Walls Generator** creates multiple inward offsets of the input polygon. The first offset is positioned at 0.5 × line width from the polygon boundary, ensuring the extrusion fills up to the edge without overlap.
 
-Walls Generator can also be used for outward offsets or with explicit values. Right-click the component for options.
+**Walls Generator** can also be used for outward offsets or with explicit values. Right-click the component for options.
 
 ##### Walls + Infill
 
 ![Walls and Infill Generators combined](Images/walls-and-infill-generators.png)
 
-The Walls and Infill Generators can be combined to fill a polygon. Connect the Infill Curves output from the Walls Generator to the Infill Generator.
+The **Walls and Infill Generators** can be combined to fill a polygon. Connect the Infill Curves output from the **Walls Generator** to the **Infill Generator**.
 
 </details>
 
 <details>
 <summary>3D Generators</summary>
 
-##### Planar Slice Generator
+##### **Planar Slice Generator**
 
 ![Planar Slice Generator component](Images/planar-slice-generator.png)
 
-The Planar Slice Generator slices the input geometry into horizontal layers. Intersections are calculated at each layer’s midpoint, but the output polylines are placed at the layer ceiling. This matches the actual extrusion behavior: the nozzle deposits material downward, so the middle of the printed layer aligns with the intersection plane.
+The **Planar Slice Generator** slices the input geometry into horizontal layers. Intersections are calculated at each layer’s midpoint, but the output polylines are placed at the layer ceiling. This matches the actual extrusion behavior: the nozzle deposits material downward, so the middle of the printed layer aligns with the intersection plane.
 
 Brep-Plane intersection curves are resampled and output as polylines. Convert the input to mesh for faster slicing.
 
-##### Vase Mode Generator
+##### **Vase Mode Generator**
 
 ![Vase Mode Generator component](Images/vase-mode-generator.png)
 
-The Vase Mode Generator creates a helical path on the surface of the input geometry. The output curve is also resampled either by length (sampling mode = 1, default) or angle (sampling mode = 0). Length-based sampling produces consistent distances between sampling points. Angle-based sampling results in vertically aligned control points.
+The **Vase Mode Generator** creates a helical path on the surface of the input geometry. The output curve is also resampled either by length (sampling mode = 1, default) or angle (sampling mode = 0). Length-based sampling produces consistent distances between sampling points. Angle-based sampling results in vertically aligned control points.
 
 ![Staggered vase mode sampling](Images/vase-mode-sampling-comparison.png)
 
@@ -253,7 +253,7 @@ The center axis is usually inferred from the bounding box center and points stra
 <details>
 <summary>Non-planar Slicing</summary>
 
-Planar Transform maps the input geometry to a planar shape. Slice that shape, then use Non-Planar Transform to map the Toolpaths back to the original geometry.
+**Planar Transform** maps the input geometry to a planar shape. Slice that shape, then use **Non-Planar Transform** to map the Toolpaths back to the original geometry.
 
 ![Non-planar slicing workflow](Images/nonplanar-slicing-workflow.png)
 
@@ -262,24 +262,24 @@ Planar Transform maps the input geometry to a planar shape. Slice that shape, th
 </details>
 
 <details>
-<summary>Layer Height Field</summary>
+<summary><strong>Layer Height Field</strong></summary>
 
 
 ![Layer Height Field component](Images/layer-height-field-component.png)
 
-Vase Mode Generator and Planar Slice Generator can produce varying layer heights based on a Layer Height Field. Use the Layer Height Generator to create fields by interpolating explicit values or using the slope of input geometry. The number of output layers is automatically determined to achieve the target density.
+**Vase Mode Generator** and **Planar Slice Generator** can produce varying layer heights based on a **Layer Height Field**. Use the **Layer Height Generator** to create fields by interpolating explicit values or using the slope of input geometry. The number of output layers is automatically determined to achieve the target density.
 
 ![Layer height profile settings](Images/layer-height-profile-settings.png)
 
 A profile curve, together with minimum and maximum layer height values, can be used to vary layer height based on slope. By default, the mapping is absolute: horizontal areas map to `MinH`, and vertical areas map to `MaxH`.
 
-Enable Normalize Input by right-clicking the Layer Height Generator to remap the actual slope or curvature range of the input geometry to the full `[MinH..MaxH]` range. This makes the layer height variation relative to the geometry itself, rather than to an absolute horizontal-to-vertical range.
+Enable Normalize Input by right-clicking the **Layer Height Generator** to remap the actual slope or curvature range of the input geometry to the full `[MinH..MaxH]` range. This makes the layer height variation relative to the geometry itself, rather than to an absolute horizontal-to-vertical range.
 </details>
 
 ### Component Reference
 ---
 <details>
-<summary>FDM Machine</summary>
+<summary><strong>FDM Machine</strong></summary>
 
 The **FDM Machine** bundles the static settings that describe the 3D printer.
 
@@ -290,7 +290,7 @@ The **FDM Machine** bundles the static settings that describe the 3D printer.
 | **Rapid Speed**  | Travel speed for non-printing moves.                                                                                                             |
 | **Max Z Speed**  | Maximum speed for Z-axis moves, including Z-hops.                                                                                                |
 | **Bounds**       | The printer's build volume. Connect a Box.                                                                                                       |
-| **Extruders**    | Connect one or more FDM Extruder components to define each extruder's index, nozzle and filament diameters, and material color.                  |
+| **Extruders**    | Connect one or more **FDM Extruder** components to define each extruder's index, nozzle and filament diameters, and material color.                  |
 | **Start G-code** | Supply custom startup G-code. If none is supplied, TOOLPATHS generates basic initialization code; check that it is compatible with your printer. |
 | **End G-code**   | Supply custom shutdown G-code. By default, TOOLPATHS moves up by the Z clearance distance and turns off the heaters.                             |
 | **Toolchange**   | G-code to run at each toolchange. Use `[next_extruder]` for the next extruder index, for example `T[next_extruder]`.                             |
@@ -299,9 +299,9 @@ The **FDM Machine** bundles the static settings that describe the 3D printer.
 </details>
 
 <details>
-<summary>FDM Defaults</summary>
+<summary><strong>FDM Defaults</strong></summary>
 
-**FDM Defaults** provides global process settings to the FDM Processor. These values are used when a Toolpath does not define or inherit the corresponding property. Right-click the component to add optional inputs.
+**FDM Defaults** provides global process settings to the **FDM Processor**. These values are used when a Toolpath does not define or inherit the corresponding property. Right-click the component to add optional inputs.
 
 ![FDM Defaults component and settings](Images/fdm-defaults-component.png)
 
@@ -328,12 +328,12 @@ The **FDM Machine** bundles the static settings that describe the 3D printer.
 | **Min Layer Height**         | `Hmin`        | Minimum layer height in millimeters. Samples below this are treated as degenerate; `0` uses the nozzle-based default.                                         |
 | **Max Layer Height**         | `Hmax`        | Maximum layer height in millimeters. In Auto mode, extrusion is limited to stay within this height; `0` uses the nozzle-based default.                        |
 
-The component outputs one **Defaults** object. Connect it to the `Defaults` input of the FDM Processor.
+The component outputs one **Defaults** object. Connect it to the `Defaults` input of the **FDM Processor**.
 
 </details>
 
 <details>
-<summary>FDM Processor</summary>
+<summary><strong>FDM Processor</strong></summary>
 
 The **FDM Processor** resolves Toolpaths, machine settings, and process defaults into one program and provides the data needed for simulation and output.
 
@@ -344,7 +344,7 @@ The **FDM Processor** resolves Toolpaths, machine settings, and process defaults
 | Input              | Nickname   | Default      | Description                                                         |
 | ------------------ | ---------- | ------------ | ------------------------------------------------------------------- |
 | **Toolpaths**      | `T`        | —            | Toolpaths to combine into the program. Accepts a tree of Toolpaths. |
-| **Machine**        | `M`        | —            | Optional FDM Machine settings.                                      |
+| **Machine**        | `M`        | —            | Optional **FDM Machine** settings.                                      |
 | **Defaults**       | `Defaults` | —            | Optional FDM process defaults.                                      |
 | **Processor Mode** | `Mode`     | `2` (Hybrid) | Selects preview and simulation behavior.                            |
 
@@ -360,14 +360,14 @@ The **FDM Processor** resolves Toolpaths, machine settings, and process defaults
 
 | Output              | Nickname | Description                                                                            |
 | ------------------- | -------- | -------------------------------------------------------------------------------------- |
-| **Simulation Data** | `D`      | Program and simulation data. Connect this to the FDM Simulator or an output component. |
+| **Simulation Data** | `D`      | Program and simulation data. Connect this to the **FDM Simulator** or an output component. |
 | **Errors**          | `E`      | Errors reported while building the program.                                            |
 | **Warnings**        | `W`      | Warnings reported while building the program.                                          |
 
 </details>
 
 <details>
-<summary>FDM Simulator</summary>
+<summary><strong>FDM Simulator</strong></summary>
 
 The **FDM Simulator** displays the program as a mesh preview and provides controls for playback and visualization.
 
@@ -377,7 +377,7 @@ The **FDM Simulator** displays the program as a mesh preview and provides contro
 
 | Input                | Nickname | Default | Description                                                                      |
 | -------------------- | -------- | ------- | -------------------------------------------------------------------------------- |
-| **Simulation Data**  | `D`      | —       | Simulation data from the FDM Processor.                                          |
+| **Simulation Data**  | `D`      | —       | Simulation data from the **FDM Processor**.                                          |
 | **Time**             | `Time`   | `1.0`   | Simulation position, from `0.0` (start) to `1.0` (end).                          |
 | **Play**             | `Play`   | `False` | Plays the simulation in real time.                                               |
 | **Speed**            | `Speed`  | `1.0`   | Playback speed multiplier.                                                       |
@@ -400,7 +400,7 @@ The **FDM Simulator** displays the program as a mesh preview and provides contro
 </details>
 
 <details>
-<summary>FDM G-code Output</summary>
+<summary><strong>FDM G-code Output</strong></summary>
 
 The **FDM G-code Output** component compiles the FDM program into machine-specific G-code. It can save the file to disk or upload it to a supported printer.
 
@@ -410,7 +410,7 @@ The **FDM G-code Output** component compiles the FDM program into machine-specif
 
 | Input                  | Nickname   | Default | Description                                                                                         |
 | ---------------------- | ---------- | ------- | --------------------------------------------------------------------------------------------------- |
-| **Simulation Data**    | `D`        | —       | Simulation data from the FDM Processor. Full simulation data is required to compile G-code.         |
+| **Simulation Data**    | `D`        | —       | Simulation data from the **FDM Processor**. Full simulation data is required to compile G-code.         |
 | **Machine Type**       | `Machine`  | Klipper | Selects the G-code target: Klipper, Klipper (No Z), RepRap, Prusa, or Bambu.                        |
 | **Output Directory**   | `Dir`      | Desktop | Parent folder for saved output. Files are organized in a `toolpaths gcode` folder and then by date. |
 | **Save**               | `Save`     | `False` | Saves the compiled G-code to disk.                                                                  |
@@ -439,7 +439,7 @@ The **FDM G-code Output** component compiles the FDM program into machine-specif
 
 ###### **0.3.0**
 
-- improved print centering and build-volume checks, with bounds errors shown on the FDM Processor and settings changes updating correctly
+- improved print centering and build-volume checks, with bounds errors shown on the **FDM Processor** and settings changes updating correctly
 - renamed the extruder temperature input nickname to **Temp** and added examples
 
 ###### **0.2.24-beta24**
@@ -447,14 +447,14 @@ The **FDM G-code Output** component compiles the FDM program into machine-specif
 - faster and more responsive FDM previews
 - toolpaths are displayed immediately as lightweight lines while the full preview is calculated
 - smoother simulation playback and improved handling of large toolpath sets
-- FDM Clean Polyline now supports true 3D simplification
+- **FDM Clean Polyline** now supports true 3D simplification
 - improved performance and stability of monotonic infill, especially for complex regions
 - redesigned licensing dialog with clearer license status and expiry information
 - local and trial keys are validated before installation
 - previously installed keys are detected automatically
 - various bug fixes and stability improvements
 - BREAKING CHANGES:
-  - FDM Clean Polyline method values changed:
+  - **FDM Clean Polyline** method values changed:
     - 0 = 3D Ramer-Douglas-Peucker
     - 1 = Arc decimation
     - 2 = Arc resampling
@@ -462,86 +462,86 @@ The **FDM G-code Output** component compiles the FDM program into machine-specif
 
 ###### **0.2.23-beta23**
 
-- new Connect Toolpaths component: chains toolpaths together and suppresses Z-hop and retraction at their boundaries
+- new **Connect Toolpaths** component: chains toolpaths together and suppresses Z-hop and retraction at their boundaries
 - bug fixes in infill generation
 - improved TSP solver for toolpath sorting
 - BREAKING CHANGES:
-  - Sort Curves component should be replaced with the new version
+  - **Sort Curves** component should be replaced with the new version
 
 ###### **0.2.22-beta22**
 
-- FDM Simulator: new Preview mode, approximately 50× faster
-- FDM Simulator: new Hybrid mode displays the fast preview while calculating the full simulation in the background
+- **FDM Simulator**: new Preview mode, approximately 50× faster
+- **FDM Simulator**: new Hybrid mode displays the fast preview while calculating the full simulation in the background
 - solver now runs fully in the background; Grasshopper UI and inputs remain responsive during calculations
 - script changes immediately update running calculations
 - new Spiral infill type
 - new Spiral wall type
-- Vase Mode: direct NURBS surface processing without meshing when a single surface is supplied, improving speed and accuracy
-- new Minimum Layer Time modulator adjusts extrusion speed to ensure a minimum layer time
-- Vase Mode and Planar Slice Generator now use external options components to simplify their UI
+- **Vase Mode**: direct NURBS surface processing without meshing when a single surface is supplied, improving speed and accuracy
+- new **Minimum Layer Time** modulator adjusts extrusion speed to ensure a minimum layer time
+- **Vase Mode** and **Planar Slice Generator** now use external options components to simplify their UI
 - new layer-height calculations based on overlap and 3D distance for more extreme vase-mode overhangs
 - BREAKING CHANGES:
-  - replace Infill Generator
-  - replace Walls Generator
-  - replace Vase Mode Generator
-  - replace Planar Slice Generator
-  - replace FDM Simulator
-  - replace FDM Processor
+  - replace **Infill Generator**
+  - replace **Walls Generator**
+  - replace **Vase Mode Generator**
+  - replace **Planar Slice Generator**
+  - replace **FDM Simulator**
+  - replace **FDM Processor**
 
 ###### **0.2.21-beta21**
 
-- fixed Vase Mode paths not lying directly on the input geometry
+- fixed **Vase Mode** paths not lying directly on the input geometry
 - simulation progress bar in the viewport
-- new Tangent Displacement modulator
-- fixed Walls Generator infill-region bug
+- new **Tangent Displacement** modulator
+- fixed **Walls Generator** infill-region bug
 - new Spiral infill type producing a double-spiral path
 - BREAKING CHANGES:
-  - replace Infill Generator
-  - replace FDM Simulator
+  - replace **Infill Generator**
+  - replace **FDM Simulator**
 
 ###### **0.2.19-beta19**
 
-- FDM Processor is more robust and updates the simulation reliably during rapid changes
-- Vase Mode handles complex geometries better
-- Vase Mode supports slanted geometry where the central axis is not aligned with Z
+- **FDM Processor** is more robust and updates the simulation reliably during rapid changes
+- **Vase Mode** handles complex geometries better
+- **Vase Mode** supports slanted geometry where the central axis is not aligned with Z
 - custom start/end G-code now fully overrides automatically generated initialization; basic initialization is generated when none is supplied
 - Rhino 7 on macOS licensing startup fix
 - Gyroid infill bug fix
-- Walls Generator can create outward as well as inward offsets
+- **Walls Generator** can create outward as well as inward offsets
 - improved documentation and updated examples
 - BREAKING CHANGES:
-  - replace Vase Mode Generator
-  - replace Walls Generator
-  - replace Infill Generator
+  - replace **Vase Mode Generator**
+  - replace **Walls Generator**
+  - replace **Infill Generator**
 
 ###### **0.2.17-beta17**
 
-- FDM Processor distinguishes geometry changes from appearance-only changes; color changes update the simulator without triggering a full solve
-- extruder colors can be overridden using the Color component
-- new Angular Curve Divider for dividing curves into sections with an even angular relationship
+- **FDM Processor** distinguishes geometry changes from appearance-only changes; color changes update the simulator without triggering a full solve
+- extruder colors can be overridden using the **Color** component
+- new **Angular Curve Divider** for dividing curves into sections with an even angular relationship
 - Planar and Non-Planar generators no longer require target/base surfaces; surfaces can be generated automatically from the upper open edge
 - Planar and Non-Planar generators support multiple reference surfaces, allowing layer lines to match internal features
-- Vase Mode rewritten to intersect input geometry with a helical surface, improving support for complex meshes
+- **Vase Mode** rewritten to intersect input geometry with a helical surface, improving support for complex meshes
 - updated examples
 - BREAKING CHANGES:
-  - replace Make Nonplanar, Make Planar and Vase Mode components
-  - FDM Processor, FDM Machine and FDM Simulator were updated and should be replaced
+  - replace **Make Nonplanar**, **Make Planar** and **Vase Mode** components
+  - **FDM Processor**, **FDM Machine** and **FDM Simulator** were updated and should be replaced
 
 ###### **0.2.16-beta16**
 
 - multi-extruder support
-- new Extruder component; FDM Machine accepts one or more extruders
+- new **Extruder** component; **FDM Machine** accepts one or more extruders
 - Toolpath objects can specify the active extruder; otherwise the lowest-index extruder is used
-- per-extruder material colors are displayed by FDM Simulator
+- per-extruder material colors are displayed by **FDM Simulator**
 - when multiple files are open, only the preview of the current file is displayed
-- less verbose startup and FDM Processor messages
+- less verbose startup and **FDM Processor** messages
 - new multi-extruder example
-- fixed Vase Mode slicing problems with curved meshes
+- fixed **Vase Mode** slicing problems with curved meshes
 - fixed simulation timing issue that could leave the simulation stuck at an incorrect time after changing toolpaths
 - updated showcase example with component descriptions
 - BREAKING CHANGES:
-  - FDM Machine now requires an Extruder input containing nozzle diameter and filament size
-  - FDM Simulator should be replaced in older definitions
+  - **FDM Machine** now requires an Extruder input containing nozzle diameter and filament size
+  - **FDM Simulator** should be replaced in older definitions
 
 #### 0.2.15-beta15
 
@@ -556,11 +556,11 @@ The **FDM G-code Output** component compiles the FDM program into machine-specif
 
 #### 0.2.12-beta12
 
-- async solver for FMD processor and FDM simulator
+- async solver for FMD processor and **FDM simulator**
 - rhino 7 support
 - added gyroid and gyroid connected infill
 - BREAKING CHANGES:
-  - infill generator: "Line width" renamed to "Infill spacing"
+  - **infill generator**: "Line width" renamed to "Infill spacing"
 
 #### 0.2.11-beta11
 
@@ -572,19 +572,19 @@ The **FDM G-code Output** component compiles the FDM program into machine-specif
 - output for robots (for use with e.g. robots plugin by visose)
 - operations are removed and replaced by toolpath inheritance
 - toolpath can accept other toolpaths as templates. In this way settings can be used in multiple toolpaths and  adjusted in bulk
-- new curve / toolpath sorting component, sorting is removed in the FDM Processor
-- machine and process settings are separated: FDM machine + FDM Defaults
-- FDM Processor checks the build volume, if provided, and gives visual warnings if exceeded
+- new curve / toolpath sorting component, sorting is removed in the **FDM Processor**
+- machine and process settings are separated: **FDM machine** + **FDM Defaults**
+- **FDM Processor** checks the build volume, if provided, and gives visual warnings if exceeded
 - Z clearance setting check initial Z hop to prevent collisions
 
 #### 0.2.9-beta9
 
 - non-planar example
 - Renamed "Initial Z Height" to Safe Clearance: Max(CurrentZ + Clearance, Clearance) logic
-- renaming in fdm defaults: StartG → startG-Code, EndG → endG-Code, EPos → ExtruderMode
-- fdm simulator: outputs overall program time in human readable format: HH:mm:ss
-- vector field modulator: replaced IDW with Gaussian for smoother   displacement
-- vector field modulator: introduced per-point "Sigma" radius for individual influence control (removed redundant Falloff)
+- renaming in **fdm defaults**: StartG → startG-Code, EndG → endG-Code, EPos → ExtruderMode
+- **fdm simulator**: outputs overall program time in human readable format: HH:mm:ss
+- **vector field modulator**: replaced IDW with Gaussian for smoother   displacement
+- **vector field modulator**: introduced per-point "Sigma" radius for individual influence control (removed redundant Falloff)
 
 #### 0.2.1-beta1 to 0.2.8-beta8
 
@@ -615,14 +615,14 @@ The **FDM G-code Output** component compiles the FDM program into machine-specif
 
 #### 0.1.14-alpha15
 
-- fdm machine flattens toolpath input
+- **fdm machine** flattens toolpath input
 - uv scaling input  for better textures flow along the extrusion
 - bugfixes for preview
 
 #### 0.1.13-alpha14
 
-- Infill Generator : robust handling for disjoint regions
-- Infill Generator :  Start Point is now hidden ; right click to reveal
+- **Infill Generator** : robust handling for disjoint regions
+- **Infill Generator** :  Start Point is now hidden ; right click to reveal
 - smart selector for extrusion mode based on available inputs
 - bugfix: static mode now correctly ignores sampled heights
 - closed paths are rendered more nicely
@@ -633,7 +633,7 @@ The **FDM G-code Output** component compiles the FDM program into machine-specif
 
 #### 0.1.11-alpha12
 
-- interpolated vector field modulator
+- interpolated **vector field modulator**
 - simulation improvement:
   - heightfield outlier filtering
   - extrusion smoothing
@@ -658,13 +658,13 @@ The **FDM G-code Output** component compiles the FDM program into machine-specif
 
 - icons
 - curve divider respects closed/open state
-- walls generator reworked to suppress duplicate control points
+- **walls generator** reworked to suppress duplicate control points
 - introduction of simplify curve component
 
 #### 0.1.7-alpha8
 
 - planar slicer component: generates planar curves for "normal" printing
-- bugfix in walls generator: holes are offset correctly
+- bugfix in **walls generator**: holes are offset correctly
 
 #### 0.1.6-alpha7
 
