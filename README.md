@@ -46,13 +46,11 @@ This example shows a vase-mode print with a solid bottom. The Vase Mode Generato
 
 ### Further Examples
 
+![Further TOOLPATHS examples](docs-v3/images/examples.jpg)
+
+- [Download the Non-planar Slicing example](Examples/toolpath_nonplanar-slicing_beta-24.gh)
 - [Download the Image Map example](Examples/toolpath_image_map-beta-24.gh)
-- [Download the Variable Infill example](Examples/toolpath_variable_infill-beta-24.gh)
 - [Download the Vector Field Modulator example](Examples/toolpath_vectorFieldModulator-beta-24.gh)
-- [Download the Multi-extruder example](Examples/toolpath_simple_multiextruder-beta-24.gh)
-- [Download the Robot Output example](Examples/toolpath_robot-output_beta-24.gh)
-- [Download the Simple example](Examples/toolpath_simple_example-beta-24.gh)
-- [Download the Showcase example](Examples/toolpath_showcase_beta-24.gh)
 
 ### Concepts
 
