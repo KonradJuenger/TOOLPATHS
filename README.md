@@ -1,7 +1,5 @@
 ## TOOLPATHS
 
-### General Information
-
 Toolpaths is a Grasshopper plugin for generating and simulating G-code. Its goal is to enable new ways of 3D printing and CNC milling while giving novices and experts alike full control of the machine's movement.
 
 #### Core Features
@@ -253,7 +251,8 @@ Enable Normalize Input by right-clicking the Layer Height Generator to remap the
 
 ### Component Reference
 
-FDM Machine
+<details>
+<summary>FDM Machine</summary>
 
 The **FDM Machine** bundles the static settings that describe the 3D printer.
 
@@ -270,7 +269,10 @@ The **FDM Machine** bundles the static settings that describe the 3D printer.
 | **Toolchange**   | G-code to run at each toolchange. Use `[next_extruder]` for the next extruder index, for example `T[next_extruder]`.                             |
 | **Center**       | Moves the print to the center of the build plate.                                                                                                |
 
-FDM Defaults
+</details>
+
+<details>
+<summary>FDM Defaults</summary>
 
 **FDM Defaults** provides global process settings to the FDM Processor. These values are used when a Toolpath does not define or inherit the corresponding property. Right-click the component to add optional inputs.
 
@@ -301,7 +303,10 @@ FDM Defaults
 
 The component outputs one **Defaults** object. Connect it to the `Defaults` input of the FDM Processor.
 
-FDM Processor
+</details>
+
+<details>
+<summary>FDM Processor</summary>
 
 The **FDM Processor** resolves Toolpaths, machine settings, and process defaults into one program and provides the data needed for simulation and output.
 
@@ -332,7 +337,10 @@ The **FDM Processor** resolves Toolpaths, machine settings, and process defaults
 | **Errors**          | `E`      | Errors reported while building the program.                                            |
 | **Warnings**        | `W`      | Warnings reported while building the program.                                          |
 
-FDM Simulator
+</details>
+
+<details>
+<summary>FDM Simulator</summary>
 
 The **FDM Simulator** displays the program as a mesh preview and provides controls for playback and visualization.
 
@@ -362,7 +370,10 @@ The **FDM Simulator** displays the program as a mesh preview and provides contro
 | **Tool Position**    | `P`      | Current toolhead position.                         |
 | **Program Duration** | `Dur`    | Total program duration in a human-readable format. |
 
-FDM G-code Output
+</details>
+
+<details>
+<summary>FDM G-code Output</summary>
 
 The **FDM G-code Output** component compiles the FDM program into machine-specific G-code. It can save the file to disk or upload it to a supported printer.
 
@@ -392,9 +403,12 @@ The **FDM G-code Output** component compiles the FDM program into machine-specif
 | **Verbose Debug**  | `D`      | Detailed output of individual machine movements when **Output G-code** is enabled. |
 | **Toolpath Debug** | `TD`     | Summary of toolpath structure and properties when **Output G-code** is enabled.    |
 
+</details>
+
 ### Changelog
 
-Show version history
+<details>
+<summary>Show version history</summary>
 
 ###### **0.2.24-beta24**
 
@@ -636,3 +650,5 @@ Show version history
 #### 0.1.4-alpha5
 
 - licensing popup at first install
+
+</details>
