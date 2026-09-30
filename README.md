@@ -32,7 +32,7 @@ A **Toolpath** combines geometry with the properties used to print it. The **FDM
 
 ![Quickstart TOOLPATHS workflow](Images/quickstart-workflow.png)
 
-[Download the Quickstart example](Examples/toolpaths_quickstart.gh?raw=1)
+[Download Quickstart Definition](https://raw.githubusercontent.com/KonradJuenger/TOOLPATHS/main/Examples/toolpaths_quickstart.gh)
 
 ### Vase Mode Example
 ---
@@ -40,7 +40,7 @@ A **Toolpath** combines geometry with the properties used to print it. The **FDM
 
 This example shows a vase-mode print with a solid bottom. The **Vase Mode Generator** creates the helical wall path and can also output planar base curves. These curves are used with the **Walls and Infill Generators** to fill the bottom.
 
-[Download the Vase Mode example](Examples/toolpaths_vasemode.gh?raw=1)
+[Download the Vase Mode example](https://raw.githubusercontent.com/KonradJuenger/TOOLPATHS/main/Examples/toolpaths_vasemode.gh)
 
 ##### Further Examples
 
@@ -48,12 +48,12 @@ This example shows a vase-mode print with a solid bottom. The **Vase Mode Genera
 
 <table>
   <tr>
-    <td><a href="Examples/toolpaths_nonplanar-slicing.gh?raw=1">Download the Non-planar Slicing example</a></td>
-    <td><a href="Examples/toolpaths_image_map.gh?raw=1">Download the Image Map example</a></td>
-    <td><a href="Examples/toolpaths_vectorFieldModulator.gh?raw=1">Download the <strong>Vector Field Modulator</strong> example</a></td>
+    <td><a href="https://raw.githubusercontent.com/KonradJuenger/TOOLPATHS/main/Examples/toolpaths_nonplanar-slicing.gh">Download the Non-planar Slicing example</a></td>
+    <td><a href="https://raw.githubusercontent.com/KonradJuenger/TOOLPATHS/main/Examples/toolpaths_image_map.gh">Download the Image Map example</a></td>
+    <td><a href="https://raw.githubusercontent.com/KonradJuenger/TOOLPATHS/main/Examples/toolpaths_vectorFieldModulator.gh">Download the <strong>Vector Field Modulator</strong> example</a></td>
   </tr>
   <tr>
-   <td colspan="3" align="center"><a href="Examples/toolpaths_showcase.gh?raw=1">Download an overview example</a></td>
+   <td colspan="3" align="center"><a href="https://raw.githubusercontent.com/KonradJuenger/TOOLPATHS/main/Examples/toolpaths_showcase.gh">Download an overview example</a></td>
    </tr>
 </table>
 
@@ -70,7 +70,7 @@ Connect a curve to the `Curve` input; a polyline is recommended. Other curve typ
 #### Toolpath Inheritance
 
 ![Toolpath inheritance example](Images/toolpath-inheritance-example.png)
-[Download the inheritance example](Examples/toolpaths_inheritance.gh?raw=1)
+[Download the inheritance example](https://raw.githubusercontent.com/KonradJuenger/TOOLPATHS/main/Examples/toolpaths_inheritance.gh)
 
 Toolpath components can be chained. A Toolpath inherits settings from the Toolpath connected to its input, then applies its own local overrides.
 
@@ -101,7 +101,7 @@ TOOLPATHS has five extrusion modes. They define how much material is deposited f
 
 ![Toolpath object options](Images/toolpaths-object-options.png)
 
-[Download the Toolpath Object Options example](Examples/toolpaths_toolpath-options.gh?raw=1)
+[Download the Toolpath Object Options example](https://raw.githubusercontent.com/KonradJuenger/TOOLPATHS/main/Examples/toolpaths_toolpath-options.gh)
 
 <details>
 <summary>Extrusion Calculation</summary>
@@ -171,7 +171,7 @@ Numeric modulators such as **Flow**, **Speed**, and **Extruder Temperature** use
 
 ![Modulators example](Images/toolpaths-modulators.png)
 
-[Download the Modulators example](Examples/toolpaths_modulators.gh?raw=1)
+[Download the Modulators example](https://raw.githubusercontent.com/KonradJuenger/TOOLPATHS/main/Examples/toolpaths_modulators.gh)
 
 </details>
 
@@ -195,7 +195,7 @@ Masks do not modify Toolpaths by themselves. They are connected to modulators to
 
 ![Masks example](Images/toolpaths-masks.png)
 
-[Download the Masks example](Examples/toolpaths_masks.gh?raw=1)
+[Download the Masks example](https://raw.githubusercontent.com/KonradJuenger/TOOLPATHS/main/Examples/toolpaths_masks.gh)
 
 </details>
 
@@ -259,7 +259,7 @@ Base and top thickness can be used to slice the start and end of the shape into 
 
 The center axis is usually inferred from the bounding box center and points straight in the Z direction. For slanted input geometry, it may help to define a tilted axis explicitly.
 
-[Download the Vase Mode example](Examples/toolpaths_vasemode.gh?raw=1)
+[Download the Vase Mode example](https://raw.githubusercontent.com/KonradJuenger/TOOLPATHS/main/Examples/toolpaths_vasemode.gh)
 
 </details>
 <details>
@@ -267,7 +267,7 @@ The center axis is usually inferred from the bounding box center and points stra
 
 ![Generators example](Images/toolpaths-generators.png)
 
-[Download the Generators example](Examples/toolpaths_generators.gh?raw=1)
+[Download the Generators example](https://raw.githubusercontent.com/KonradJuenger/TOOLPATHS/main/Examples/toolpaths_generators.gh)
 
 </details>
 
@@ -280,7 +280,7 @@ The center axis is usually inferred from the bounding box center and points stra
 
 ![Non-planar slicing workflow](Images/nonplanar-slicing-workflow.png)
 
-[Download the Non-planar Slicing example](Examples/toolpaths_nonplanar-slicing.gh?raw=1)
+[Download the Non-planar Slicing example](https://raw.githubusercontent.com/KonradJuenger/TOOLPATHS/main/Examples/toolpaths_nonplanar-slicing.gh)
 
 </details>
 
