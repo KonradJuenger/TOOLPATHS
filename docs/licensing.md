@@ -12,13 +12,15 @@ TOOLPATHS has two licensing options. On first installation, **License key — lo
 ##  Install TOOLPATHS
 
 1. In Rhino: open the Package Manager by running `_PackageManager`.
-2. Check **Include pre-releases** and search for **Toolpaths**, then install it.
+2. Search for **Toolpaths**, then install the stable release.
 
    <img src="../Images/rhino-package-manager-install.png" width="33%">
 
 ##  Add your local or trial license
 
 After installing TOOLPATHS, the Toolpaths licensing popup opens:
+
+For a trial, request a key on the [TOOLPATHS trial page](https://juengerkuehn.com/toolpaths-trial/). Your key is sent automatically by email.
 
 1. Leave **License key — local or trial** selected.
 2. Paste your key.

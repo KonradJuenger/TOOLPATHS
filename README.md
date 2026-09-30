@@ -20,8 +20,8 @@ Toolpaths is a Grasshopper plugin for generating and simulating G-code. Its goal
 
 ### Install
 
-1. Request a trial key at [toolpaths@juengerkuehn.com](mailto:toolpaths@juengerkuehn.com).
-2. In Rhino, run `_PackageManager`, enable **Include pre-releases**, search for **TOOLPATHS**, and install it.
+1. Request a trial key on the [TOOLPATHS trial page](https://juengerkuehn.com/toolpaths-trial/). Your key is sent automatically by email.
+2. In Rhino, run `_PackageManager`, search for **TOOLPATHS**, and install the stable release.
 3. When the licensing dialog opens, paste your trial key under **License key — local or trial** and click **Activate license**. To use a Rhino account license instead, choose **Rhino account — Cloud Zoo** and click **Continue with Rhino**.
 
 See the [licensing guide](docs/licensing.md) for other license types and details.
