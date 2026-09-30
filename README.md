@@ -53,7 +53,7 @@ This example shows a vase-mode print with a solid bottom. The **Vase Mode Genera
     <td><a href="Examples/toolpaths_vectorFieldModulator.gh">Download the <strong>Vector Field Modulator</strong> example</a></td>
   </tr>
   <tr>
-   <td><a href="Examples/toolpaths_showcase.gh">Download an overview example</a></td>
+   <td colspan="3"><a href="Examples/toolpaths_showcase.gh">Download an overview example</a></td>
    </tr>
 </table>
 
