@@ -32,7 +32,7 @@ A **Toolpath** combines geometry with the properties used to print it. The **FDM
 
 ![Quickstart TOOLPATHS workflow](Images/quickstart-workflow.png)
 
-[Download the Quickstart example](Examples/quickstart.gh)
+[Download the Quickstart example](Examples/toolpaths_quickstart.gh)
 
 ### Vase Mode Example
 ---
@@ -40,7 +40,7 @@ A **Toolpath** combines geometry with the properties used to print it. The **FDM
 
 This example shows a vase-mode print with a solid bottom. The **Vase Mode Generator** creates the helical wall path and can also output planar base curves. These curves are used with the **Walls and Infill Generators** to fill the bottom.
 
-[Download the Vase Mode example](Examples/vasemode.gh)
+[Download the Vase Mode example](Examples/toolpaths_vasemode.gh)
 
 ##### Further Examples
 
@@ -48,9 +48,9 @@ This example shows a vase-mode print with a solid bottom. The **Vase Mode Genera
 
 <table>
   <tr>
-    <td><a href="Examples/toolpath_nonplanar-slicing_beta-24.gh">Download the Non-planar Slicing example</a></td>
-    <td><a href="Examples/toolpath_image_map-beta-24.gh">Download the Image Map example</a></td>
-    <td><a href="Examples/toolpath_vectorFieldModulator-beta-24.gh">Download the <strong>Vector Field Modulator</strong> example</a></td>
+    <td><a href="Examples/toolpaths_nonplanar-slicing.gh">Download the Non-planar Slicing example</a></td>
+    <td><a href="Examples/toolpaths_image_map.gh">Download the Image Map example</a></td>
+    <td><a href="Examples/toolpaths_vectorFieldModulator.gh">Download the <strong>Vector Field Modulator</strong> example</a></td>
   </tr>
 </table>
 
@@ -94,6 +94,10 @@ TOOLPATHS has five extrusion modes. They define how much material is deposited f
 5. **No Extrusion Mode:** Moves the printer along the path without depositing material.
 
 **Flow** multiplies the extrusion amount calculated by the selected mode. For example, Auto Width Mode first calculates the volume needed to reach the target width, then applies the Flow multiplier. Flow can also be varied along the path with the **Flow Modulator**.
+
+![Toolpath object options](Images/toolpaths-object-options.png)
+
+[Download the Toolpath Object Options example](Examples/toolpaths_toolpath-options.gh)
 
 <details>
 <summary>Extrusion Calculation</summary>
@@ -161,6 +165,9 @@ Numeric modulators such as **Flow**, **Speed**, and **Extruder Temperature** use
 | `4` | Normalized-Stepped | Distribute values along the normalized length of the path in steps. |
 | `5` | Normalized-Interpolated | Interpolate between values along the normalized length of the path. |
 
+![Modulators example](Images/toolpaths-modulators.png)
+
+[Download the Modulators example](Examples/toolpaths_modulators.gh)
 
 </details>
 
@@ -181,6 +188,10 @@ Common values:
 Some modulators clamp masks to 0..1. Others use the mask as a direct multiplier, so values above 1 can amplify the effect and negative values can invert it. For predictable results, use 0..1 unless overdriving is intentional.
 
 Masks do not modify Toolpaths by themselves. They are connected to modulators to restrict, fade, or scale effects, for example by region or along a gradient.
+
+![Masks example](Images/toolpaths-masks.png)
+
+[Download the Masks example](Examples/toolpaths_masks.gh)
 
 </details>
 
@@ -244,10 +255,17 @@ Base and top thickness can be used to slice the start and end of the shape into 
 
 The center axis is usually inferred from the bounding box center and points straight in the Z direction. For slanted input geometry, it may help to define a tilted axis explicitly.
 
-[Download the Vase Mode example](Examples/vasemode.gh)
+[Download the Vase Mode example](Examples/toolpaths_vasemode.gh)
 
 </details>
+<details>
+<summary>geneators example</summary>
 
+![Generators example](Images/toolpaths-generators.png)
+
+[Download the Generators example](Examples/toolpaths_generators.gh)
+
+</details>
 ### Advanced Slicing
 ---
 <details>
@@ -257,7 +275,7 @@ The center axis is usually inferred from the bounding box center and points stra
 
 ![Non-planar slicing workflow](Images/nonplanar-slicing-workflow.png)
 
-[Download the Non-planar Slicing example](Examples/toolpath_nonplanar-slicing_beta-24.gh)
+[Download the Non-planar Slicing example](Examples/toolpaths_nonplanar-slicing.gh)
 
 </details>
 
