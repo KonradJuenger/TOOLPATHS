@@ -67,7 +67,7 @@ Connect a curve to the `Curve` input; a polyline is recommended. Other curve typ
 #### Toolpath Inheritance
 
 ![Toolpath inheritance example](Images/toolpath-inheritance-example.png)
-
+[Download the inheritance example](Examples/toolpaths_inheritance.gh)
 Toolpath components can be chained. A Toolpath inherits settings from the Toolpath connected to its input, then applies its own local overrides.
 
 In the example, each Toolpath keeps its own speed, while the Z-Hop value is set to **3.2** for both.
@@ -259,13 +259,14 @@ The center axis is usually inferred from the bounding box center and points stra
 
 </details>
 <details>
-<summary>geneators example</summary>
+<summary>Generators example</summary>
 
 ![Generators example](Images/toolpaths-generators.png)
 
 [Download the Generators example](Examples/toolpaths_generators.gh)
 
 </details>
+
 ### Advanced Slicing
 ---
 <details>
