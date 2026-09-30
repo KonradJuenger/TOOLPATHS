@@ -276,9 +276,10 @@ The center axis is usually inferred from the bounding box center and points stra
 <details>
 <summary>Non-planar Slicing</summary>
 
+![Non-planar slicing workflow](Images/nonplanar-slicing-workflow.png)
 Non-planar slicing uses a two-step transform. First, the input mesh is transformed into a planar version with flat top and bottom boundaries. This allows standard slicing methods, such as **Vase Mode** or **Planar Slicer**, to generate regular toolpaths. After slicing, the inverse transform is applied to the toolpaths, bending them back into the original shape of the input mesh.
 
-![Non-planar slicing workflow](Images/nonplanar-slicing-workflow.png)
+
 
 ### **Planar Transform**
 
