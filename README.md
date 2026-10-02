@@ -1,6 +1,7 @@
-> [!NOTE] Currently we run a BETA to test the plugin -- 
-> read and discuss with use about the release here: [discourse.mcneel.com](https://discourse.mcneel.com/t/toolpaths-3d-printing-plugin-beta-release/223142)
-
+> [!NOTE]
+> *We are currently running a beta to test the plugin.*
+>
+> *Read and discuss the release with us here: [discourse.mcneel.com](https://discourse.mcneel.com/t/toolpaths-3d-printing-plugin-beta-release/223142)*
 ## TOOLPATHS
 
 Toolpaths is a Grasshopper plugin for generating and simulating G-code. Its goal is to enable new ways of 3D printing and CNC milling while giving novices and experts alike full control of the machine's movement.
