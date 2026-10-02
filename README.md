@@ -1,5 +1,5 @@
->[!NOTE] Currently we run a BETA to test the plugin -- 
->read and discuss with use about the release here: [discourse.mcneel.com](https://discourse.mcneel.com/t/toolpaths-3d-printing-plugin-beta-release/223142)
+> [!NOTE] Currently we run a BETA to test the plugin -- 
+> read and discuss with use about the release here: [discourse.mcneel.com](https://discourse.mcneel.com/t/toolpaths-3d-printing-plugin-beta-release/223142)
 
 ## TOOLPATHS
 
