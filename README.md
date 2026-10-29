@@ -488,6 +488,13 @@ The **FDM G-code Output** component compiles the FDM program into machine-specif
 <details>
 <summary>Show version history</summary>
 
+###### **0.3.2**
+
+- improved **Vase Mode** for curved and offset lofts with a supplied or inferred center-axis curve
+- **Vase Options** now offers **Infer Axis**, which estimates a curved axis from horizontal sections; existing **Infer Tilt** inputs are migrated
+- curved-axis slicing preserves supplied mesh topology and projects Brep paths onto the original geometry
+- faster Brep projection for tilted and curved axes
+
 ###### **0.3.1**
 
 - improved **Vase Mode** continuity on meshes and multi-face Breps
