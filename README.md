@@ -486,6 +486,16 @@ The **FDM G-code Output** component compiles the FDM program into machine-specif
 <details>
 <summary>Show version history</summary>
 
+###### **0.3.1**
+
+- improved **Vase Mode** continuity on meshes and multi-face Breps
+- suitable multi-face Breps use a validated temporary surface for analytical vase-mode processing
+- vase mode options has an option to flip the directin of the helix
+- displacement modulators apply sequentially to the current toolpath, preserving previous changes and recalculating normals and tangents
+- fixed transformed geometry caching and CNC G-code file overwrites
+- BREAKING CHANGES:
+  - **Normal, Vector, Tangential, and Region Normal Displacement** no longer have an Add/Replace input. Displacements now accumulate sequentially, so existing Replace workflows may produce different geometry. Review affected definitions and input connections.
+
 ###### **0.3.0**
 
 - improved print centering and build-volume checks, with bounds errors shown on the **FDM Processor** and settings changes updating correctly
