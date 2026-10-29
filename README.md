@@ -224,7 +224,7 @@ The **Infill Generator** fills a planar polygon with patterns such as Gyroid or 
 
 The **Walls Generator** creates multiple inward offsets of the input polygon. The first offset is positioned at 0.5 × line width from the polygon boundary, ensuring the extrusion fills up to the edge without overlap.
 
-**Walls Generator** can also be used for outward offsets or with explicit values. Right-click the component for options.
+Right-click the component to add **Zero Offset**, which places the first wall centerline on the input boundary. Subsequent walls remain spaced inward by the line width. **Manual Offsets** accepts explicit inward or outward offsets and overrides the automatic offsets.
 
 ##### Walls + Infill
 
@@ -250,6 +250,8 @@ Brep-Plane intersection curves are resampled and output as polylines. Convert th
 ![Vase Mode Generator component](Images/vase-mode-generator.png)
 
 The **Vase Mode Generator** creates a helical path on the surface of the input geometry. The output curve is also resampled either by length (sampling mode = 1, default) or angle (sampling mode = 0). Length-based sampling produces consistent distances between sampling points. Angle-based sampling results in vertically aligned control points.
+
+Right-click **FDM Vase Options** to add **Helix Direction**: `0` is counterclockwise (default) and `1` is clockwise, viewed from above. The helix rises in either direction.
 
 ![Staggered vase mode sampling](Images/vase-mode-sampling-comparison.png)
 
@@ -490,11 +492,13 @@ The **FDM G-code Output** component compiles the FDM program into machine-specif
 
 - improved **Vase Mode** continuity on meshes and multi-face Breps
 - suitable multi-face Breps use a validated temporary surface for analytical vase-mode processing
-- vase mode options has an option to flip the directin of the helix
+- **Vase Mode** supports clockwise and counterclockwise helix directions
+- **Walls Generator** can place the first wall centerline on the input boundary with **Zero Offset**
 - displacement modulators apply sequentially to the current toolpath, preserving previous changes and recalculating normals and tangents
 - fixed transformed geometry caching and CNC G-code file overwrites
 - BREAKING CHANGES:
   - **Normal, Vector, Tangential, and Region Normal Displacement** no longer have an Add/Replace input. Displacements now accumulate sequentially, so existing Replace workflows may produce different geometry. Review affected definitions and input connections.
+  - **Walls Generator** no longer supports the Outward Offsets input. Use positive **Manual Offsets** for outward walls; existing components with the old input show a warning and provide a menu option to remove it.
 
 ###### **0.3.0**
 
